@@ -1,0 +1,5 @@
+# The notebook runtime uses only Python's standard library.
+ipykernel==7.1.0
+nbclient==0.10.2
+ruff==0.17.1
+ty==0.0.89

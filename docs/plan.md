@@ -21,8 +21,10 @@ Do not create implementation files for later phases before starting those phases
 
 ## 0. Shared setup and evaluation rules
 
-- [ ] Inspect the existing environment, download script, and supplied data.
+- [x] Inspect the existing environment, download script, and supplied data.
   Check: identify dependencies and data paths without exposing credentials.
+  Completed for Phase 1A: project `.venv` uses Python 3.14.8; local data has
+  120 evaluation tasks/172 outputs and 240 placeholder tasks/259 outputs.
 - [ ] Verify current competition rules, account entry status, notebook limits,
   accelerator availability, quota, and deadlines in Kaggle. Ask the user to
   accept rules or register if needed; do not do so without authorization.
@@ -30,35 +32,44 @@ Do not create implementation files for later phases before starting those phases
 - [ ] Reserve a fixed development/validation split within the training tasks.
   Keep related augmentations and synthetic variants in their source split.
   Check: evaluation solutions are not used for training or checkpoint selection.
-- [ ] Define one submission validator and one scoring implementation for every
+- [x] Define one submission validator and one scoring implementation for every
   phase. Check task IDs, test-input order/count, both attempt keys, rectangular
   nonempty grids, dimensions, integer color range, and exact grid equality.
   Check: small hand-constructed cases include multiple test inputs, either
-  attempt correct, malformed output, and neither attempt correct.
-- [ ] Confirm the official aggregation formula before implementing scoring.
+  attempt correct, malformed output, and neither attempt correct. Completed in
+  `notebooks/submission.ipynb` and `tests/test_submission.py`.
+- [x] Confirm the official aggregation formula before implementing scoring.
   Report output accuracy and task solve rate separately; if official scoring
   weights tasks rather than outputs, also report that official metric explicitly.
   Check: a multi-output example exposes any difference between these metrics.
+  The parent-verified live overview confirms output-weighted scoring:
+  https://www.kaggle.com/competitions/arc-prize-2026-arc-agi-2/overview/evaluation
 
 ## 1. Phase 1 — local symbolic baseline and Kaggle notebook
 
 ### 1A. Smallest runnable notebook
 
-- [ ] Create `notebooks/submission.ipynb` with explanation, path configuration,
+- [x] Create `notebooks/submission.ipynb` with explanation, path configuration,
   a minimal identity predictor, validation, and JSON writing. Use Python stdlib
   for this first slice. Put reusable logic in a small module only as needed.
   Check: a fresh kernel can execute every cell in order without manual state.
-- [ ] Separate evaluation mode from submission mode. Evaluation may read known
+  Completed with a self-contained notebook; runtime code has no third-party
+  imports.
+- [x] Separate evaluation mode from submission mode. Evaluation may read known
   solutions for scoring only. Submission mode reads the supplied test challenge
   file, discovers task IDs and test counts dynamically, and never loads solutions.
-  Check: no hard-coded placeholder IDs or output counts.
-- [ ] Execute locally against evaluation challenges and solutions. Reproduce
+  Check: no hard-coded placeholder IDs or output counts. Submission mode defaults
+  to `/kaggle/working/submission.json` on Kaggle.
+- [x] Execute locally against evaluation challenges and solutions. Reproduce
   the proposal's identity baseline or investigate any discrepancy.
   Check: report the measured numerator, denominator, and runtime, not a copied
-  expected score. Invalid submissions fail validation before scoring.
-- [ ] Generate a local placeholder `submission.json`, then read it back and
+  expected score. Invalid submissions fail validation before scoring. The fresh
+  evaluation run measured 0/172 output accuracy and 0/120 task solve rate.
+- [x] Generate a local placeholder `submission.json`, then read it back and
   validate it against the test challenges. Run again from a fresh kernel.
   Check: every required output has two valid attempts; repeated runs agree.
+  Two fresh submission runs produced 240 tasks/259 outputs each and identical
+  JSON bytes.
 
 ### 1B. Early Kaggle smoke test
 
@@ -224,3 +235,56 @@ ordering before competition promotion; post-deadline study has no deadline gate.
 Implement **1A only**, including the shared validator/scoring checks needed by
 that slice. Execute the notebook on local data. Review that change in a PR,
 then perform **1B** with the user. Do not build ML, TTT, or LLM scaffolding yet.
+
+## Phase 1A checkpoint (2026-10-18)
+
+Completed artifacts:
+
+- `notebooks/submission.ipynb`: self-contained stdlib identity baseline,
+  strict validator, evaluation/submission modes, scoring, and JSON readback.
+- `tests/test_submission.py`: six unittest cases covering local path resolution,
+  identity output ordering and copy isolation, multiple outputs,
+  either-attempt matching, invalid output rejection, scoring distinctions, and
+  no solution loading in submission mode.
+- `requirements-dev.txt` and `pyproject.toml`: reproducible local notebook
+  execution and quality-gate configuration. Runtime dependencies remain empty.
+- Ignored local artifacts: `artifacts/evaluation-submission.json` and two
+  deterministic placeholder submissions.
+
+Quality gates and exact reproducible local commands:
+
+- Format: `ruff format --check tests notebooks/submission.ipynb`.
+- Lint: `ruff check tests notebooks/submission.ipynb`.
+- Test typecheck: `ty check tests`.
+- Trusted runtime typecheck:
+  `runtime_scratch=$(mktemp -d "${TMPDIR:-/tmp}/arc-agi-runtime.XXXXXX"); jq -r '[.cells[] | select(.cell_type == "code")][0].source[]' notebooks/submission.ipynb > "$runtime_scratch/runtime.py"; ty check "$runtime_scratch/runtime.py"`.
+- Tests: `./.venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v`.
+- Fresh evaluation from the repository root:
+  `ARC_MODE=evaluation ./.venv/bin/python -c 'import sys; from pathlib import Path; import nbformat; from nbclient import NotebookClient; notebook=nbformat.read(Path("notebooks/submission.ipynb"), as_version=4); NotebookClient(notebook, timeout=600, kernel_name="python3").execute(cwd=Path.cwd()); print("sys.executable:", sys.executable); print("fresh root evaluation: passed")'`.
+- Fresh evaluation from `notebooks/`:
+  `repo_root=$(pwd); (cd notebooks && ARC_MODE=evaluation "$repo_root/.venv/bin/python" -c 'import sys; from pathlib import Path; import nbformat; from nbclient import NotebookClient; notebook=nbformat.read(Path("submission.ipynb"), as_version=4); NotebookClient(notebook, timeout=600, kernel_name="python3").execute(cwd=Path.cwd()); print("sys.executable:", sys.executable); print("fresh notebooks evaluation: passed")')`.
+- Fresh submission from the repository root:
+  `ARC_MODE=submission ./.venv/bin/python -c 'import sys; from pathlib import Path; import nbformat; from nbclient import NotebookClient; notebook=nbformat.read(Path("notebooks/submission.ipynb"), as_version=4); NotebookClient(notebook, timeout=600, kernel_name="python3").execute(cwd=Path.cwd()); print("sys.executable:", sys.executable); print("fresh root submission: passed")'`.
+- Fresh submission from `notebooks/`:
+  `repo_root=$(pwd); (cd notebooks && ARC_MODE=submission "$repo_root/.venv/bin/python" -c 'import sys; from pathlib import Path; import nbformat; from nbclient import NotebookClient; notebook=nbformat.read(Path("submission.ipynb"), as_version=4); NotebookClient(notebook, timeout=600, kernel_name="python3").execute(cwd=Path.cwd()); print("sys.executable:", sys.executable); print("fresh notebooks submission: passed")')`.
+- Deterministic root submission rerun:
+  `first=$(mktemp "${TMPDIR:-/tmp}/arc-agi-submission.XXXXXX"); cp artifacts/submission.json "$first"; ARC_MODE=submission ./.venv/bin/python -c 'import sys; from pathlib import Path; import nbformat; from nbclient import NotebookClient; notebook=nbformat.read(Path("notebooks/submission.ipynb"), as_version=4); NotebookClient(notebook, timeout=600, kernel_name="python3").execute(cwd=Path.cwd()); print("sys.executable:", sys.executable); print("fresh root submission rerun: passed")'; cmp "$first" artifacts/submission.json`.
+
+Recorded results:
+
+- Both local path regression cases resolve `data/` and `artifacts/` at the
+  repository root; Kaggle path precedence remains unchanged.
+- Format reported `2 files already formatted`; lint, both typechecks, and all
+  six unittest cases passed.
+- Fresh evaluation from root and `notebooks/` reported 120 tasks/172 outputs,
+  0/172 accuracy, 0/120 solved tasks, and 0.000000 official score; elapsed
+  times were 0.247999 and 0.214600 seconds.
+- Fresh submission from root and `notebooks/` reported 240 tasks/259 outputs,
+  validated readback, and `solutions loaded: no`; elapsed times were 0.191490
+  and 0.183649 seconds. The deterministic root rerun reported identical bytes
+  and elapsed 0.176874 seconds.
+
+The proposal remains unchanged. Kaggle account entry, quota, mounted input
+paths, upload, registration, credentials, and 1B have not been verified or
+performed. Human checkpoint: review the implementation PR, then perform the
+Phase 1B Kaggle packaging check with the user.
