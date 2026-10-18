@@ -302,3 +302,224 @@ load tasks → validate submission format → score identity baseline → report
 
 Then add one rule family and measure whether candidate coverage changes. Do not
 build the full DSL before the evaluation loop is trustworthy.
+
+---
+
+# Part II — Later phases: ML, GPU, and LLM
+
+Sections 1–11 above are unchanged and remain the delivery plan for **Phase 1**.
+Everything below is additive. Phase 1 is still the only committed deliverable;
+Phases 2–4 are gated experiments that must earn their place with a measured
+number, and each has a rollback to the Phase 1 submission.
+
+The reason for splitting them this way: the Phase 1 solver is exact-match
+symbolic search, and the measured baseline is 0/172. Adding a model to a system
+that cannot yet solve anything gives you two unknowns instead of one. Add the
+model once the symbolic loop is trustworthy and its failure modes are named.
+
+Also note what the competition rules actually permit. The line
+`GPU Notebook <= 12 hours run-time` means a GPU is **allowed**, not required.
+Accelerator choice is a per-notebook setting and is independent of the solver.
+Selecting GPU does not make serial Python search faster; it only rents hardware
+you may not use and consumes quota.
+
+## 12. Phase 1 hardening (unchanged scope)
+
+Before any model work:
+
+- Valid `submission.json`, every hidden-test task present, two attempts each.
+- Offline notebook verified with internet disabled.
+- Exact local score recorded, plus the failure-category breakdown from §6.
+- A saved `baseline.json` of per-task predictions, so later phases can be
+  compared against a fixed artifact rather than a moving solver.
+
+Gate to Phase 2: Phase 1 score is **> 0/172**, and the failure analysis shows
+cases where a correct program exists in the DSL but the enumerator does not
+reach it within the candidate cap. That is the specific gap a learned prior
+closes. If Phase 1 is at 0/172 and the failures are semantic rather than
+search-order, fix the DSL first — a model will not rescue a missing operator.
+
+## 13. Phase 2 — learned search priors (ML)
+
+**Goal.** Same DSL, same validator, same output format. Replace part of the
+blind enumeration order with a model that scores which primitives are plausible
+for a given task. This is the DreamCoder idea (Ellis et al., PLDI 2021:
+*bootstrapping inductive program synthesis with wake-sleep library learning*),
+reduced to the one piece that fits two weeks: a *recognition model*, not a
+learned library.
+
+**Training data comes free from Phase 1.** Run the Phase 1 solver over the
+1,000 training tasks and keep the program that matched all demo pairs. Each such
+program is a labeled example: `(task grids) → sequence of DSL operators`. That
+gives a few hundred labeled programs without any hand annotation.
+
+**Model shape, deliberately small.**
+
+- Input: the demo pairs, capped to a fixed canvas (30×30, 10 colors), one-hot or
+  embedding over color.
+- Encoder: a small CNN or grid transformer, a few million parameters. Nothing
+  that needs 96 GB.
+- Output: a distribution over DSL operators, conditioned on the operators
+  already chosen — i.e. a next-operator predictor used to order the search.
+- Cost: minutes per epoch on a T4×2. This is a laptop-scale model that happens
+  to train faster on a GPU.
+
+**Wiring.** Keep it behind one switch:
+
+```python
+ORDER_STRATEGY = "enum"      # Phase 1 behaviour, always available
+               # "model"     # Phase 2, requires a checkpoint
+```
+
+The validator, ranking, and two-attempt logic do not change. If the model orders
+badly, search is slower, not wrong. That property is why this is the safe first
+model to add.
+
+**Success measure, not vibes.** Report median search nodes expanded per solved
+task against Phase 1, and any exact-match gain on the held-out 120. A prior that
+saves nodes but adds no accuracy is still a win for the writeup; a prior that
+adds accuracy on train and loses on eval is overfitting, and gets reverted.
+
+## 14. GPU usage rules
+
+Applies to every phase after 1.
+
+- **Submission notebook runs CPU.** Phase 1's solver is search-bound, not
+  matrix-bound. Flipping the submission to GPU buys nothing and costs quota.
+- **One separate lab notebook.** `notebooks/gpu-lab.ipynb`, accelerator L4×4,
+  never committed as a submission version. Use it for torch environment checks,
+  dataset loading, training runs, and breaking things.
+- **Quota budget.** Kaggle grants roughly 30 GPU hours per week per account
+  (Kaggle adjusts this; verify in account settings). L4×4 consumes at **2×**
+  the rate, so it is effectively ~15 h/week. Plan around the halved number.
+- **Learn on the cheap accelerator.** T4×2 and P100 run at 1× and are ample for
+  models of this size. Reserve L4×4 for what its 96 GB is actually for: holding
+  a small LLM, or very large batch runs.
+- **Rules compliance.** L4 instances are restricted to notebooks attached to
+  this competition. No attempts to use them elsewhere, no quota circumvention.
+  Violations risk competition and account bans.
+- **No internet.** Every dependency and every weight file must arrive as a
+  Kaggle dataset or a pre-installed package. Test the offline path before
+  trusting it.
+- **Determinism.** Fix seeds, pin versions, and record them in the notebook.
+  Phase 1 output must stay reproducible even after models exist.
+
+## 15. Phase 3 — test-time training (ML, GPU-dependent)
+
+**Idea.** Fine-tune a small grid model per task on that task's 2–10 demo pairs,
+then predict the test output. This is the strongest known symbolic-plus-learning
+lineage on ARC (Icecuber, ARChitects, and the 2024 winner's test-time-training
+approach), and it is where a GPU genuinely changes what is possible.
+
+**Honest cost.** TTT needs a per-task training loop, augmentation over the D4
+group and color permutations, a careful early-stopping rule, and a
+prediction→grid decoder. That is weeks of work at competition quality, not days.
+At 240 hidden tasks inside a 12-hour cap, the loop also has to be fast: budget
+roughly 30–60 seconds per task, which forces a small model and few epochs.
+
+**Positioning.** Phase 3 is a candidate generator like any other. Its output
+goes through the same exact validation against demo pairs; a TTT prediction that
+contradicts the demos is discarded. It competes for `attempt_1` / `attempt_2`
+against the symbolic candidates rather than replacing them.
+
+**Gate.** Only start Phase 3 if Phase 2 shows the model's predictions are
+useful at all, and only if the timeline still has a frozen Phase 1 submission to
+fall back to.
+
+## 16. Phase 4 — offline LLM as a program proposer (LLM, highest risk)
+
+**Idea.** Instead of enumerating the DSL, ask a small language model to write a
+DSL program for the task from the demo pairs, then validate it. This is the
+highest-novelty option and the one that best matches the competition's
+"universality" criterion, because a program-space prior generalizes further than
+a hand-written grammar.
+
+**The hard constraints, stated plainly.**
+
+- **No internet during scoring.** The model weights must ship as a Kaggle
+  dataset. A 7–8B model quantized to 4-bit fits comfortably in 96 GB; a larger
+  one fits too, but every extra GB is upload and load time inside the 12-hour
+  budget.
+- **Output must be machine-checkable.** The LLM emits text in a strict DSL
+  grammar. A parser, not the model's confidence, decides validity. Anything
+  unparseable is discarded.
+- **Validation is the safety net.** A proposed program still has to reproduce
+  every demo pair exactly. A hallucinated program fails fast and costs little.
+- **Determinism.** Greedy decoding or fixed seeds; otherwise the submission
+  changes between runs and cannot be debugged.
+- **Runtime.** Model load plus 2 attempts × 240 tasks of generation is the main
+  risk. Measure it on the lab notebook before it goes anywhere near the
+  submission path.
+
+**Why it is last.** It has the longest feedback loop, the largest packaging
+surface, the most ways to fail offline, and no measured evidence yet that a
+small model's program proposals beat plain enumeration on ARC-AGI-2. Treat it
+as a stretch experiment with its own branch.
+
+## 17. Promotion rules
+
+A later phase reaches the submission only when all of these hold:
+
+1. It improves the held-out 120-task exact-match score over the frozen
+   Phase 1 baseline, using the same two-attempt rule.
+2. The offline notebook completes well inside 12 hours, with margin.
+3. Output is deterministic for a fixed input and seed.
+4. The fallback path still exists: with the model disabled, the notebook
+   reproduces the Phase 1 submission exactly.
+
+Anything that fails 1–4 stays in the lab notebook and becomes a writeup
+section, not a submission change.
+
+## 18. Revised timeline
+
+Phase 1 dates from §7 are unchanged. The competition's final deadline is
+2 November 2026, 23:59 UTC (3 November, 07:59 HKT), so Phase 1 must be submitted
+early and treated as the floor.
+
+| Window | Work | Output |
+|---|---|---|
+| Oct 19–24 | Phase 1 solver, as originally planned | Local score, failure analysis |
+| Oct 25–26 | Phase 1 notebook, offline check, submit | Frozen baseline submission |
+| Oct 26–27 | Lab notebook setup; torch/CUDA check; load train data on GPU | Working GPU sandbox |
+| Oct 27–29 | Phase 2 prior: trace collection from Phase 1, small model, training | Node-savings and accuracy numbers |
+| Oct 29–30 | Phase 2 promotion test, or documented negative result | Decision, recorded |
+| Oct 30–31 | Optional Phase 3 prototype, timeboxed and abandonable | Prototype or dropped |
+| Nov 1 | Freeze. Best validated configuration only | Final submission |
+| Nov 2 | Submit early, verify status | Confirmed |
+
+Phase 4 does not appear in this table on purpose. It runs only if Phases 1–3
+finish early, and it does not block the deadline.
+
+## 19. Additional risks
+
+- **Two unknowns at once.** A model plus an unvalidated solver produces
+  unattributable failures. Mitigation: Phase 1 freezes first.
+- **Quota exhaustion.** L4×4 at 2× rate plus long training runs can burn a
+  week's quota in two sessions. Mitigation: train small models on T4×2, keep
+  checkpoints in a dataset, never re-download weights.
+- **Offline packaging surprises.** A model that imports cleanly online can fail
+  on a no-internet machine. Mitigation: one full offline dry run per phase.
+- **Rule compliance.** L4 access is competition-restricted and monitored.
+  Mitigation: use it only in notebooks attached to this competition.
+- **Overfitting to the 120 evaluation tasks.** With a learnable component, the
+  temptation to tune on eval grows. Mitigation: fixed checkpoint schedule, at
+  most one eval run per phase, changes recorded before the run.
+- **Scope creep against the deadline.** Mitigation: the promotion rules in §17
+  are the only path to the submission.
+
+## 20. Definition of done, extended
+
+Phase 1 must-haves from §8 are unchanged. In addition:
+
+**Phase 2 done:** a trained checkpoint, a `model` ordering strategy behind a
+switch, a measured node-savings table, and a clear keep/revert decision.
+
+**Phase 3 done:** a per-task TTT loop that fits the runtime budget on a sample
+of tasks, with its measured accuracy and its measured cost per task.
+
+**Phase 4 done:** a documented set of model candidates that fit the 96 GB
+budget offline, a parsing layer for DSL text, and a measured proposal-quality
+number — or a documented reason it was dropped.
+
+**Across all phases:** the submission remains reproducible, offline, and
+deterministic, with the Phase 1 path always available.
