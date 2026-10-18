@@ -343,8 +343,10 @@ search-order, fix the DSL first — a model will not rescue a missing operator.
 
 **Goal.** Same DSL, same validator, same output format. Replace part of the
 blind enumeration order with a model that scores which primitives are plausible
-for a given task. This is the DreamCoder idea (Ellis et al., PLDI 2021:
-*bootstrapping inductive program synthesis with wake-sleep library learning*),
+for a given task. This is the [DreamCoder](https://doi.org/10.1145/3453483.3454080)
+idea (Ellis et al., PLDI 2021: *DreamCoder: Bootstrapping Inductive Program
+Synthesis with Wake-Sleep Library Learning*;
+[open-access published paper at MIT](https://dspace.mit.edu/handle/1721.1/145949)),
 reduced to the one piece that fits two weeks: a *recognition model*, not a
 learned library.
 
