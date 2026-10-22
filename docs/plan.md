@@ -1,6 +1,9 @@
 # ARC-AGI-2 implementation plan
 
-Status: proposed checklist. No implementation or Kaggle execution is claimed.
+Status: Phase 1C is frozen and verified locally; the updated-solver Kaggle run
+and user PR review/merge remain pending. Final frozen metrics supersede earlier
+pre-fix measurements. User-supplied Phase 1B evidence is
+recorded below and is not independently live-verified in this workspace.
 Scope: all phases in [the proposal](proposal.md). The proposal remains unchanged.
 
 ## Working order
@@ -29,9 +32,12 @@ Do not create implementation files for later phases before starting those phases
   accelerator availability, quota, and deadlines in Kaggle. Ask the user to
   accept rules or register if needed; do not do so without authorization.
   Check: distinguish verified account settings from proposal estimates.
-- [ ] Reserve a fixed development/validation split within the training tasks.
+- [x] Reserve a fixed development/validation split within the training tasks.
   Keep related augmentations and synthetic variants in their source split.
   Check: evaluation solutions are not used for training or checkpoint selection.
+  Phase 1C uses SHA-256 task IDs modulo 5: bucket 0 is held out and the other
+  buckets are iteration data. Solutions are excluded from inference; the loader
+  reads them before inference only for validation and later scoring diagnostics.
 - [x] Define one submission validator and one scoring implementation for every
   phase. Check task IDs, test-input order/count, both attempt keys, rectangular
   nonempty grids, dimensions, integer color range, and exact grid equality.
@@ -73,16 +79,23 @@ Do not create implementation files for later phases before starting those phases
 
 ### 1B. Early Kaggle smoke test
 
-- [ ] Upload the same notebook to a competition-attached Kaggle notebook.
+- [x] Upload the same notebook to a competition-attached Kaggle notebook.
   Attach competition data and any imported source files. Keep the notebook
   private unless the user authorizes publication.
   Check: record the notebook URL/version and confirm actual mounted input paths.
-- [ ] Select CPU and disable internet. Read input from the mounted competition
+-  User-supplied evidence, not independently live-verified: saved Kaggle
+  version `https://www.kaggle.com/code/kevinmhk/notebook33c1344ea5?scriptVersionId=361056044`,
+  screenshot reported success in 21.6 seconds on CPU with no accelerator;
+  interactive output reported 240 tasks/259 outputs, no solutions loaded, and
+  0.525350 seconds. The user stated that internet was off.
+- [x] Select CPU and disable internet. Read input from the mounted competition
   directory and write `/kaggle/working/submission.json`.
   Check: no dependency download, local absolute path, or repository-only import.
-- [ ] Save and execute a full notebook version, not only interactive cells.
+- [x] Save and execute a full notebook version, not only interactive cells.
   Check: the offline run completes; its saved output contains a parseable,
   validated `submission.json`. This is a packaging check, not a hidden-test score.
+  The saved version evidence above is user-supplied; the updated solver has not
+  yet been run on Kaggle.
 - [ ] Ask the user before a competition submission. If authorized, submit the
   saved notebook version and inspect Kaggle's final status and score.
   Check: record the returned submission/version identifier and final result;
@@ -90,23 +103,24 @@ Do not create implementation files for later phases before starting those phases
 
 ### 1C. Improve the solver incrementally
 
-- [ ] Add geometry/color rules and shape inference from proposal §4.2 A–B.
+- [x] Add geometry/color rules and shape inference from proposal §4.2 A–B.
   Check: a runnable regression check for each nontrivial behavior; candidates
   must reproduce all demonstration outputs before being treated as exact fits.
-- [ ] Add object segmentation and selection (§4.2 C), starting with one useful
+- [x] Add object segmentation and selection (§4.2 C), starting with one useful
   rule family. Check: controlled object examples and training-set results agree.
-- [ ] Add symmetry/periodic completion (§4.2 D) only where training failures
+- [x] Add symmetry/periodic completion (§4.2 D) only where training failures
   justify it. Check: do not overwrite conflicting observed cells silently.
-- [ ] Add bounded composition (§4.2 E), stable ranking, output deduplication,
+- [x] Add bounded composition (§4.2 E), stable ranking, output deduplication,
   and fallback predictions. Check: candidate/time limits, multiple test inputs,
   ambiguous demo fits, and two-attempt behavior are covered.
-- [ ] Iterate on training tasks; run full training checks at milestones.
+- [x] Iterate on training tasks; run full training checks at milestones.
   Check: record coverage, exact score, runtime, and representative failures.
-- [ ] Freeze a candidate before the planned held-out evaluation. Record exact
+- [x] Freeze a candidate before the planned held-out evaluation. Record exact
   metrics and failure analysis. Check: do not tune repeatedly against that set.
 - [ ] Repeat the offline Kaggle run with the selected solver and archive baseline
   predictions/configuration. Check: local/Kaggle behavior agrees on identical
   accessible inputs; the placeholder is not treated as hidden-test evidence.
+  Updated solver Kaggle run is pending.
 
 **Phase 1 completion:** a reproducible offline notebook, valid submission format,
 measured local results, and a frozen CPU fallback. A nonzero score is a target,
@@ -232,9 +246,10 @@ ordering before competition promotion; post-deadline study has no deadline gate.
 
 ## Immediate next task
 
-Implement **1A only**, including the shared validator/scoring checks needed by
-that slice. Execute the notebook on local data. Review that change in a PR,
-then perform **1B** with the user. Do not build ML, TTT, or LLM scaffolding yet.
+Review the uncommitted Phase 1C changes, then run the updated solver notebook on
+Kaggle with the user. Do not treat the placeholder or the local 0.000000
+evaluation score as a hidden-test result. Do not build ML, TTT, or LLM
+scaffolding yet.
 
 ## Phase 1A checkpoint (2026-10-18)
 
@@ -257,7 +272,7 @@ Quality gates and exact reproducible local commands:
 - Lint: `ruff check tests notebooks/submission.ipynb`.
 - Test typecheck: `ty check tests`.
 - Trusted runtime typecheck:
-  `runtime_scratch=$(mktemp -d "${TMPDIR:-/tmp}/arc-agi-runtime.XXXXXX"); jq -r '[.cells[] | select(.cell_type == "code")][0].source[]' notebooks/submission.ipynb > "$runtime_scratch/runtime.py"; ty check "$runtime_scratch/runtime.py"`.
+  `runtime_scratch=$(mktemp -d "${TMPDIR:?}/arc-agi-runtime.XXXXXX"); jq -r '[.cells[] | select(.cell_type == "code")][0].source[]' notebooks/submission.ipynb > "$runtime_scratch/runtime.py"; ty check "$runtime_scratch/runtime.py"`.
 - Tests: `./.venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v`.
 - Fresh evaluation from the repository root:
   `ARC_MODE=evaluation ./.venv/bin/python -c 'import sys; from pathlib import Path; import nbformat; from nbclient import NotebookClient; notebook=nbformat.read(Path("notebooks/submission.ipynb"), as_version=4); NotebookClient(notebook, timeout=600, kernel_name="python3").execute(cwd=Path.cwd()); print("sys.executable:", sys.executable); print("fresh root evaluation: passed")'`.
@@ -268,7 +283,7 @@ Quality gates and exact reproducible local commands:
 - Fresh submission from `notebooks/`:
   `repo_root=$(pwd); (cd notebooks && ARC_MODE=submission "$repo_root/.venv/bin/python" -c 'import sys; from pathlib import Path; import nbformat; from nbclient import NotebookClient; notebook=nbformat.read(Path("submission.ipynb"), as_version=4); NotebookClient(notebook, timeout=600, kernel_name="python3").execute(cwd=Path.cwd()); print("sys.executable:", sys.executable); print("fresh notebooks submission: passed")')`.
 - Deterministic root submission rerun:
-  `first=$(mktemp "${TMPDIR:-/tmp}/arc-agi-submission.XXXXXX"); cp artifacts/submission.json "$first"; ARC_MODE=submission ./.venv/bin/python -c 'import sys; from pathlib import Path; import nbformat; from nbclient import NotebookClient; notebook=nbformat.read(Path("notebooks/submission.ipynb"), as_version=4); NotebookClient(notebook, timeout=600, kernel_name="python3").execute(cwd=Path.cwd()); print("sys.executable:", sys.executable); print("fresh root submission rerun: passed")'; cmp "$first" artifacts/submission.json`.
+  `first=$(mktemp "${TMPDIR:?}/arc-agi-submission.XXXXXX"); cp artifacts/submission.json "$first"; ARC_MODE=submission ./.venv/bin/python -c 'import sys; from pathlib import Path; import nbformat; from nbclient import NotebookClient; notebook=nbformat.read(Path("notebooks/submission.ipynb"), as_version=4); NotebookClient(notebook, timeout=600, kernel_name="python3").execute(cwd=Path.cwd()); print("sys.executable:", sys.executable); print("fresh root submission rerun: passed")'; cmp "$first" artifacts/submission.json`.
 
 Recorded results:
 
@@ -284,7 +299,105 @@ Recorded results:
   and 0.183649 seconds. The deterministic root rerun reported identical bytes
   and elapsed 0.176874 seconds.
 
-The proposal remains unchanged. Kaggle account entry, quota, mounted input
-paths, upload, registration, credentials, and 1B have not been verified or
-performed. Human checkpoint: review the implementation PR, then perform the
-Phase 1B Kaggle packaging check with the user.
+The proposal remains unchanged. Kaggle account entry, quota, registration,
+credentials, and independent live verification of the user-supplied 1B
+evidence have not been performed in this workspace. Human checkpoint: review
+the uncommitted Phase 1C changes, run the updated solver on Kaggle, and merge
+only after that check.
+
+## Phase 1C frozen local checkpoint (2026-10-22)
+
+Implemented: eight D4 transforms, bijective recoloring including mappings learned
+from transformed demos, shape inference/resizing, crop/border removal,
+4/8-connected object selection, symmetry/periodic completion, exact-all-demo
+filtering, deduplication and deterministic fallback. The notebook remains
+self-contained with stdlib runtime. `ARC_SOLVER_MODE=identity` preserves baseline.
+
+Search bounds are **1024 candidates, depth two**, not a wall-clock timeout.
+Known ceilings: modal-color background; largest/smallest objects; bijective
+color maps; periodic completion needs an intact leading template (periods 1–6);
+only structural-prefix recolor learning; later depth-two combinations may be
+truncated. These limitations are not evidence of general reasoning.
+
+### Review and evidence
+
+Independent re-review passed after correcting singleton program encoding,
+premature completion filtering, transformed recolor inference, missing direct
+anti-diagonal reflection, and failure diagnostics. All **22 tests**, format,
+lint, and typechecks of tests and full extracted notebook runtime passed.
+The proposal remains unchanged.
+
+Earlier 26/1076 training and 0/172 evaluation results came from defective
+pre-freeze implementations and are superseded. Corrections followed controlled
+regressions, not evaluation-answer tuning. After the final freeze, one fresh
+training and one fresh evaluation run produced:
+
+- Full training: **28/1076 outputs**, **26/1000 solved tasks**.
+- Iteration bucket: **24/845 outputs**, **22/784 solved tasks**.
+- Training held-out bucket: **4/231 outputs**, **4/216 solved tasks**.
+- Candidate coverage: **28/1000** tasks with an exact demo fit; mean best demo
+  coverage `0.045771428571428574`.
+- Training task runtime: `233.381519` seconds total, `3.518807` seconds maximum;
+  fresh-kernel wall time `235.023325` seconds.
+- Frozen evaluation: **0/172 outputs**, **0/120 solved tasks**, elapsed
+  `49.789325` seconds. No evaluation accuracy gain over identity.
+- Symbolic submissions: **240 tasks / 259 outputs**, validated JSON readback,
+  no solution loading. Root/notebooks-dir elapsed times: `58.534660` and
+  `58.351615` seconds; repeat `58.365901` seconds. All three files were
+  byte-identical. Identity output matched a separate identity prediction reference.
+- Each fresh kernel asserted the project `.venv/bin/python` executable.
+- Representative training failures: `00576224`, `007bbfb7`, `009d5c81`,
+  `00d62c1b`, `00dbd492` (content/placement). All unsolved test outputs are
+  considered, not only tasks without an exact demo fit.
+
+Solutions are loaded/validated before inference in training/evaluation modes,
+but excluded from candidate inference and used only for scoring. Submission
+loads no solutions. The deterministic hash split partitions reporting; it does
+not enforce development isolation by itself.
+
+Ignored evidence: `artifacts/phase1c/verification.json`, executed `.ipynb` files,
+and prediction JSON files. Frozen notebook SHA-256:
+`6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028`.
+The outer verification command timed out after recording training, evaluation,
+and both submission-directory runs. Resume reused those completed artifacts
+and finished the repeat/identity checks without rerunning training/evaluation.
+
+### Reproduce a fresh run
+
+Use existing quality-gate commands from Phase 1A; there are now 22 tests.
+From the repository root, set `ARC_MODE` to `training`, `evaluation`, or
+`submission`. Evaluation is a planned checkpoint, not an iteration loop:
+
+```bash
+ARC_MODE=training ./.venv/bin/python - <<'PY'
+import os
+import sys
+from pathlib import Path
+import nbformat
+from nbclient import NotebookClient
+from jupyter_client import KernelManager
+
+root = Path.cwd()
+notebook = nbformat.read(root / "notebooks/submission.ipynb", as_version=4)
+manager = KernelManager(kernel_name="python3")
+manager.kernel_spec.argv[0] = sys.executable
+notebook.cells.insert(0, nbformat.v4.new_code_cell(
+    f"import sys; assert sys.executable == {sys.executable!r}; print(sys.executable)"
+))
+mode = os.environ["ARC_MODE"]
+env = dict(os.environ, ARC_SOLVER_MODE="symbolic",
+           ARC_OUTPUT_PATH=str(root / "artifacts" / f"{mode}.json"))
+NotebookClient(notebook, km=manager, timeout=1200).execute(cwd=str(root), env=env)
+for cell in notebook.cells:
+    for output in cell.get("outputs", []):
+        if output.get("output_type") == "stream":
+            print(output.text, end="")
+PY
+```
+
+### Human checkpoint
+
+Review the implementation PR, then upload its notebook to Kaggle and repeat the
+saved CPU/offline smoke test. The earlier saved Kaggle version proves Phase 1A
+packaging only, not this updated solver. No competition submission, publication,
+or merge has been performed for Phase 1C.
