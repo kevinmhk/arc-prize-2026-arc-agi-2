@@ -1,10 +1,11 @@
 import json
 import os
+import tempfile
 import unittest
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any, cast
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 NOTEBOOK_PATH = Path(__file__).parents[1] / "notebooks" / "submission.ipynb"
 
@@ -74,6 +75,29 @@ class SubmissionRuntimeTests(unittest.TestCase):
                         self.resolve_output_path(),
                         repo_root / "artifacts" / "submission.json",
                     )
+
+    def test_kaggle_competitions_mount_is_discovered(self) -> None:
+        with tempfile.TemporaryDirectory(dir=os.environ["TMPDIR"]) as scratch:
+            input_root = Path(scratch) / "input"
+            data_dir = input_root / "competitions" / "arc-prize-2026-arc-agi-2"
+            data_dir.mkdir(parents=True)
+            (data_dir / "arc-agi_test_challenges.json").write_text(
+                json.dumps(sample_challenges())
+            )
+
+            def mounted_path(value: str) -> Path:
+                path = Path(value)
+                if path.is_relative_to("/kaggle/input"):
+                    return input_root / path.relative_to("/kaggle/input")
+                return path
+
+            with (
+                patch.dict(os.environ, {"ARC_DATA_DIR": ""}),
+                patch.dict(
+                    self.runtime, {"Path": Mock(wraps=Path, side_effect=mounted_path)}
+                ),
+            ):
+                self.assertEqual(self.resolve_data_dir(), data_dir)
 
     def test_identity_preserves_multi_output_order_and_copies_grids(self) -> None:
         challenges = sample_challenges()
