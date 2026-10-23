@@ -362,9 +362,61 @@ The outer verification command timed out after recording training, evaluation,
 and both submission-directory runs. Resume reused those completed artifacts
 and finished the repeat/identity checks without rerunning training/evaluation.
 
+### Search diagnostic blocker-fix checkpoint (2026-10-23)
+
+The independent-review blockers were fixed only in
+`scripts/diagnose_search.py` and `tests/test_search_diagnostic.py`.
+`notebooks/submission.ipynb` and `proposal.md` were not changed. Inference now
+has the frozen 20.0 second task limit; post-inference demo/oracle analysis has
+an independent 5.0 second bound and explicit status. Validated predictions and
+the actual score are retained when later analysis times out. Resume state
+includes the diagnostic implementation SHA-256:
+`c6535a8ff52f2a4eea25ea0869fb4232a9fe027feaa449b7cf0d69d73e34d797`.
+Missing `verification.json` now selects the documented recomputed-baseline
+path instead of failing during metadata access.
+
+Quality gates and exact counts:
+
+- `ruff format --check scripts/diagnose_search.py tests/test_search_diagnostic.py`:
+  2 files already formatted.
+- `ruff check scripts/diagnose_search.py tests/test_search_diagnostic.py`:
+  passed.
+- `ty check scripts/diagnose_search.py tests/test_search_diagnostic.py`:
+  passed.
+- `python -m unittest discover -s tests -p 'test_*.py' -v`: 28 tests passed.
+
+The fresh command was
+`./.venv/bin/python scripts/diagnose_search.py --output-dir artifacts/search-diagnostic-final`.
+It ran 32 frozen task IDs x 3 conditions = 96 condition runs. The final
+results contain 95 inference-complete conditions and one inference timeout
+(`deeper_depth3`, task `f9d67f8b`, at 20.0 seconds). Analysis statuses are
+95 `completed`, 0 `timeout`, 0 `error`, and 1 `not_started` because inference
+did not complete. Completed-only actual scoring was:
+
+- `baseline`: 0/36 outputs, 0/32 solved tasks.
+- `expanded_depth2`: 0/36 outputs, 0/32 solved tasks.
+- `deeper_depth3`: 0/35 outputs, 0/31 solved tasks.
+
+The actual score compares retained attempts with the known solution. The
+separate oracle field asks whether any demo-valid candidate could have produced
+the known test output after inference; it does not change attempts or actual
+scoring. Oracle candidate output coverage was 0 for all three conditions and
+for the three deterministic structural failure summaries: `8b28cd80`,
+`cbded52d`, and `705a3229`. These summaries report shapes, color counts, and
+bounded predictions only; they do not infer task rules. The bounded sample
+therefore provides no support for a useful larger-search prior, but cannot
+prove that the required primitive is absent. Judge the search-prior premise
+conservatively.
+
+Artifacts: `artifacts/search-diagnostic-final/config.json`,
+`selection.json`, `results.json`, `summary.json`, `tables.json`, and
+`failure-inspection.json`. The final selection IDs were byte-for-byte equal to
+the previous manifest; no previous results were reused.
+
 ### Reproduce a fresh run
 
-Use existing quality-gate commands from Phase 1A; there are now 22 tests.
+Use existing quality-gate commands from Phase 1A; there are now 28 tests,
+including 6 search-diagnostic regressions.
 From the repository root, set `ARC_MODE` to `training`, `evaluation`, or
 `submission`. Evaluation is a planned checkpoint, not an iteration loop:
 
