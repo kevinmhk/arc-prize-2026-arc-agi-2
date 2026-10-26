@@ -453,3 +453,86 @@ Review the implementation PR, then upload its notebook to Kaggle and repeat the
 saved CPU/offline smoke test. The earlier saved Kaggle version proves Phase 1A
 packaging only, not this updated solver. No competition submission, publication,
 or merge has been performed for Phase 1C.
+
+## Experiment A checkpoint (2026-10-26)
+
+- [x] Implement and run the frozen CPU cell-classifier experiment on branch
+  `experiment/cell-classifiers`. `scripts/experiment_a.py` uses the trusted
+  notebook runtime through `scripts/diagnose_search.py` for validation, scoring,
+  background, components, and symbolic fallback. The production notebook and
+  proposal were unchanged.
+- [x] Add focused tests and pinned local dependencies. Format, lint, typecheck,
+  and all **38 unittest tests** passed after the reporting corrections (35 passed
+  at the original measurement freeze). Dependencies were installed only in
+  `.venv` from `requirements-experiments.txt`.
+- [x] Freeze and run exactly **280 tasks**: deterministic 64-task iteration
+  sample plus all **216 heldout** tasks, each ordered by SHA-256 task ID. The
+  selection hash is `b4c21035624615f8eb7e454f8b7c47ab1c14d892880b61403a310a5b4c38b2da`;
+  iteration and heldout ID hashes are recorded in `selection.json`.
+
+Exact commands:
+
+```bash
+uv pip install --python .venv/bin/python -r requirements-experiments.txt
+./.venv/bin/ruff format scripts/experiment_a.py tests/test_experiment_a.py
+./.venv/bin/ruff check scripts/experiment_a.py tests/test_experiment_a.py
+./.venv/bin/ty check scripts/experiment_a.py tests/test_experiment_a.py
+./.venv/bin/python -m unittest discover -s tests -p 'test_*.py'
+TMPDIR="${TMPDIR:?}" ./.venv/bin/python -c 'from pathlib import Path; from scripts.experiment_a import run; run(Path("artifacts/experiment-a-reporting-v2"))'
+```
+
+The last command starts a new schema-2 run in a separate directory, leaving
+`artifacts/experiment-a/` and its measured schema-1 artifacts intact. Use it only
+for an intentional rerun; no additional fitting was needed for the reporting
+corrections below.
+
+The run took **144.420331 seconds** for the task loop and completed **280/280**
+tasks: **190 supported**, **90 unsupported**, and **302 outputs**. Results below
+are `correct_outputs/total_outputs`; the official score is output-weighted.
+
+| Scope | Fallback | Tree | Forest | Combined |
+| --- | ---: | ---: | ---: | ---: |
+| Heldout, complete: 216 tasks / 231 outputs | 4/231 | 6/231 | 5/231 | **7/231** |
+| Heldout, supported: 150 tasks / 158 outputs | 2/158 | 4/158 | 3/158 | **5/158** |
+| Iteration, complete: 64 tasks / 71 outputs | 2/71 | 0/71 | 1/71 | 1/71 |
+| Iteration, supported: 40 tasks / 44 outputs | 2/44 | 0/44 | 1/44 | 1/44 |
+| All selected, complete: 280 tasks / 302 outputs | 6/302 | 6/302 | 6/302 | **8/302** |
+| All selected, supported: 190 tasks / 202 outputs | 4/202 | 4/202 | 4/202 | **6/202** |
+
+Heldout paired output deltas were tree→forest **+1/-2** added/lost, tree→combined
+**+1/-0**, and forest→combined **+2/-0**. The verified Phase 1C symbolic
+artifact scored **4/231** on the heldout complete set, so the combined result
+has a net gain of three outputs in this fixed offline comparison. This is evidence of a
+small training-heldout gain, not evidence for hidden evaluation improvement or
+production promotion.
+
+Artifacts are ignored under `artifacts/experiment-a/`: `config.json`,
+`selection.json`, `results.json` (all predictions and per-task scores), and
+`summary.json`. The run recorded source hashes for the notebook, diagnostic
+script, experiment script, requirements, training challenges, and solutions.
+The notebook hash was verified; the Phase 1C baseline was accepted only as the
+hash-checked `artifacts/phase1c/training.json` artifact. No Kaggle, GPU, model
+network call, commit, push, publication, or notebook deployment was performed.
+
+The measurements above were made with the preserved ignored snapshot
+`artifacts/experiment-a/frozen_script.py`, SHA-256
+`09a09366a8bfb4d50b6180806c7036da984e27812503705b71c70e60a88f3a6a`.
+The final-review revision is reporting/provenance-only: it did not retrain or
+reevaluate the 280 tasks, overwrite the original config, or overwrite any
+predictions. It writes a new artifact schema and refuses the old measured
+schema when resuming.
+
+The parent independently rescored the exact saved predictions. Against the
+Phase 1C baseline, heldout results had five new outputs and two lost outputs
+(net **+3**); iteration results had zero new outputs and one lost output (net
+**-1**). This tiny gain is not monotonic improvement: the paired comparison
+includes losses and is not evidence of general improvement or promotion.
+
+Limitations: the models are independent per puzzle and cellwise; they do not
+learn cross-task rules, cannot represent shape-changing demonstrations, and
+unsupported tasks retain the two frozen symbolic attempts. The fallback and
+model outputs were validated by the trusted runtime. Solutions were loaded and
+validated before fitting, excluded from feature construction, fitting,
+inference, and variant selection, then used only for scoring after prediction.
+The result does not justify changing the production notebook yet; review the
+ignored artifacts and promote only after independent review.
