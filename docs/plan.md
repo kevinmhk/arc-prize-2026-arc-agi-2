@@ -536,3 +536,53 @@ validated before fitting, excluded from feature construction, fitting,
 inference, and variant selection, then used only for scoring after prediction.
 The result does not justify changing the production notebook yet; review the
 ignored artifacts and promote only after independent review.
+
+## Experiment A2 checkpoint
+
+- [x] Freeze one policy before running: score symbolic attempt 1, symbolic
+  attempt 2, tree, and forest by exact whole-demo leave-one-out matches. Rank
+  descending by match rate; ties prefer symbolic 1, symbolic 2, tree, forest.
+  Select two distinct full-demo predictions. Unsupported classifiers and
+  insufficient-demo tasks retain symbolic fallback. No test answers select outputs.
+- [x] Validate both exclusion manifests (280 A IDs, 32 diagnostic IDs), each
+  with unique valid training IDs. Their overlap is legitimate: use the union,
+  not a cross-manifest uniqueness constraint. Select 128 SHA-256-ordered tasks
+  absent from both previous experiments.
+- [x] Resolve pre-run review findings: resume validates predictions and
+  recomputes scores; unknown saved tasks and malformed manifests fail closed.
+  All 51 tests and format/lint/typecheck gates pass.
+- [x] Parent executed the frozen run once, then independently rescored all
+  384 task/variant prediction sets without refitting or tuning. The original
+  A implementation, production notebook, and proposal remain unchanged.
+
+Command (resumes only compatible frozen artifacts):
+
+```bash
+TMPDIR="${TMPDIR:?}" ./.venv/bin/python scripts/experiment_a2.py \
+  --output-dir artifacts/experiment-a2
+```
+
+Results on the same 128 tasks / 137 test outputs:
+
+- Symbolic baseline: **4/137 outputs**, **4/128 fully solved tasks**.
+- Experiment A: **6/137 outputs**, **5/128 fully solved tasks**.
+- A2: **8/137 outputs**, **7/128 fully solved tasks**.
+- A2 versus baseline: **4 added outputs, 0 lost**; net +4 outputs/+3 tasks.
+- A2 versus A: **2 added outputs, 0 lost**; it recovers both baseline successes
+  lost by A on this sample. This is not a guarantee of monotonic improvement.
+- Supported subset: 98 tasks / 104 outputs. Baseline **3/104**, A **5/104**,
+  A2 **7/104**; fully solved tasks 3, 4, and 6 respectively.
+- 410 whole-demo folds; leave-one-out inference `76.790169` seconds.
+  Full task-loop wall time `119.788484` seconds.
+
+Ignored evidence: `artifacts/experiment-a2/{config,selection,results,summary}.json`.
+Source/data/runtime fingerprints and exact IDs are frozen in those artifacts.
+Solutions are loaded for validation/reporting, but held demonstration outputs
+are absent from each fold's fitting task, and task test answers never enter
+candidate fitting, ranking, or attempt selection.
+
+These tasks were unused by the previous classifier experiments, not completely
+unseen: symbolic baseline predictions already existed for all training tasks.
+The 120-task evaluation set and Kaggle hidden tasks were not used. Small local
+sample gains warrant further validation, not a competition accuracy claim.
+No Kaggle notebook integration, upload, or submission is part of A2.
