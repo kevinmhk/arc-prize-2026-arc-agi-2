@@ -586,3 +586,86 @@ unseen: symbolic baseline predictions already existed for all training tasks.
 The 120-task evaluation set and Kaggle hidden tasks were not used. Small local
 sample gains warrant further validation, not a competition accuracy claim.
 No Kaggle notebook integration, upload, or submission is part of A2.
+
+## GPU-1 NVARC pilot checkpoint
+
+- [x] Add the complete self-contained `notebooks/gpu1_nvarc_pilot.ipynb`.
+  It embeds the pinned upstream formatter, augmentation, DFS decoder, and
+  `score_kgmon` ranking, plus the production validator/scorer/symbolic fallback.
+  It selects one smoke task and eight training-only pilot tasks by fixed SHA256
+  order, preserves multi-output order, resets adapters between both arms and
+  tasks, and records per-task predictions, timing, memory, truncation, invalid,
+  fallback, and coverage diagnostics.
+- [x] Add offline input/dependency/model/tokenizer preflight and a parent
+  supervisor with 90-minute graceful and 120-minute hard total deadlines.
+  The real path refuses CPU fallback, network/package downloads, missing or
+  ambiguous attachments, and existing output directories. Training solutions
+  are loaded only after all smoke/pilot workers terminate.
+- [x] Add focused notebook RED-GREEN unittest checks for source drift, vendor
+  compilation, deterministic selection, missing-input failure, adapter reset,
+  fixed arm order, multi-output preservation, and a synthetic child timeout
+  that preserves a completed partial result.
+- [x] CPU-checked locally from a fresh kernel. Command:
+
+  ```bash
+  GPU1_MODE=cpu-check \
+    GPU1_OUTPUT_DIR=artifacts/gpu1-local-checks \
+    ./.venv/bin/python -c 'from pathlib import Path; import nbformat; from nbclient import NotebookClient; notebook=nbformat.read(Path("notebooks/gpu1_nvarc_pilot.ipynb"), as_version=4); NotebookClient(notebook, timeout=600, kernel_name="python3").execute(cwd=Path.cwd())'
+  ```
+
+  The executed notebook is preserved as `artifacts/gpu1-local-checks-executed.ipynb`.
+  Status: implemented and CPU-checked; GPU execution, CUDA/model loading,
+  training, inference, accuracy, and peak GPU memory remain unverified.
+- [ ] Run the real path only after parent review with the exact model and
+  versioned patched dependency-tree Inputs, GPU-enabled Internet-off Kaggle
+  configuration, and no submission action. Preserve the manifest and partial
+  metrics for review; do not modify `notebooks/submission.ipynb`.
+
+### GPU-1 parent-review blocker fix checkpoint (2026-10-28)
+
+- [x] Fix the concrete review blockers in the uploadable notebook. The runtime
+  now converts monotonic supervisor deadlines to epoch deadlines only at the
+  upstream decoder boundary, applies the independent per-arm inference cap,
+  validates the exact reduced16 tokenizer map and role prefixes, preserves
+  partial decoded candidates, validates every model output before per-output
+  fallback, persists completed arms before TTT, and reports incomplete/error
+  status honestly.
+- [x] Harden child supervision. A child-owned process group is tracked only
+  when it is safe to signal; termination escalates from SIGTERM to SIGKILL,
+  waits for the group to disappear, and cleans up queue/callback failures.
+  Offline environment flags, CPython 3.11 ABI checks, attached dependency
+  origins, patched-source metadata hashes, and full Apache-2.0 notice material
+  are recorded or enforced.
+- [x] Add RED-GREEN regressions through `run_gpu_task`, `_decode_arm`,
+  `_fill_result`, `score_results`, and real subprocess supervision. The tests
+  cover expired and future deadlines, tokenizer IDs, empty/wrong-count/
+  malformed/bool/ragged grids, mixed multi-output fallback, arm persistence,
+  and SIGTERM-ignoring descendants.
+- [x] Run the final local quality gates and fresh-kernel CPU checks after this
+  checkpoint. `ruff format --check`, `ruff check`, `ty check`, notebook
+  compilation, `git diff --check`, and `python -m unittest discover -s tests
+  -p 'test_*.py'` passed; the full repository suite is **67 tests passed**
+  after the parent’s final corrections. The own-code gate includes all four
+  code cells, including the final `main()` call; only immutable encoded
+  payload lines have a narrow line-length exemption. Vendor hashes are checked.
+
+  The parent added and observed failing regressions for three remaining issues,
+  then fixed them: scoring no longer relabels symbolic fallback as model output;
+  candidate rescoring retains the upstream four-view microbatches; and a real-mode
+  total watchdog bounds synchronous setup/reporting as well as GPU work. Worker
+  termination starts 30 seconds before the total 120-minute cap to reserve cleanup.
+
+  Parent-owned fresh kernels passed from the repository root and a detached
+  directory under the active profile’s scratch, with `PYTHONPATH` removed.
+  `KernelManager.kernel_spec.argv[0]` was set to the project interpreter and the
+  actual kernel executable was asserted. Final evidence is preserved under
+  `artifacts/gpu1-parent-checks-kgpxx3zq/`: root/detached executed notebooks,
+  logs, and CPU-check reports. Both reports explicitly say `mode=cpu-check`
+  and `status=passed`; they do not establish GPU/model loading/training/
+  inference/accuracy/memory results.
+- [x] Independent final read-only review passed for notebook SHA-256
+  `c5ffe668c7a54aad76abcab8df5be3115af067176506f0fe667aba7af5032381`.
+  The reviewer ran all 16 focused CPU tests and checked the actual preflight,
+  smoke, paired-worker, fallback, and scoring callers. No concrete security or
+  logic blockers remained. The complete repository suite has 67 passing tests;
+  real GPU validation is still the next unchecked human checkpoint.
