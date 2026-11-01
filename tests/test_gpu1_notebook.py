@@ -3,7 +3,9 @@ import contextlib
 import copy
 import hashlib
 import json
+import multiprocessing as mp
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -12,6 +14,7 @@ import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Any
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 NOTEBOOK = ROOT / "notebooks" / "gpu1_nvarc_pilot.ipynb"
@@ -102,6 +105,296 @@ class GPU1NotebookTests(unittest.TestCase):
                 self.runtime["MissingInputError"], "training_challenges"
             ):
                 self.runtime["discover_training_challenges"](Path(directory))
+
+    def test_dependency_discovery_handles_utility_paths_and_deep_inputs(self) -> None:
+        with TemporaryDirectory() as directory:
+            base = Path(directory)
+            inputs = base / "kaggle/input"
+            inputs.mkdir(parents=True)
+            utility = (
+                base
+                / "kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch"
+            )
+            nested = inputs / "notebooks/sorokin/setup/versions/2"
+            for root in (utility, nested):
+                (root / "unsloth/models").mkdir(parents=True)
+                (root / "unsloth/models/qwen3.py").write_text("# discovery fixture\n")
+                (root / "unsloth_zoo").mkdir()
+            with (
+                patch.dict(os.environ, {"GPU1_DEPENDENCY_ROOT": ""}),
+                patch.dict(self.runtime, {"sys": types.SimpleNamespace(path=[])}),
+                patch.object(
+                    self.runtime["importlib"].util,
+                    "find_spec",
+                    return_value=types.SimpleNamespace(
+                        origin=str(utility / "unsloth/__init__.py")
+                    ),
+                ),
+            ):
+                self.assertEqual(
+                    self.runtime["discover_dependency_root"](base / "no-inputs"),
+                    utility,
+                )
+            with (
+                patch.dict(os.environ, {"GPU1_DEPENDENCY_ROOT": ""}),
+                patch.dict(
+                    self.runtime, {"sys": types.SimpleNamespace(path=[str(utility)])}
+                ),
+            ):
+                empty_inputs = base / "empty-inputs"
+                empty_inputs.mkdir()
+                self.assertEqual(
+                    self.runtime["discover_dependency_root"](empty_inputs), utility
+                )
+                with self.assertRaisesRegex(
+                    self.runtime["MissingInputError"], "expected one"
+                ):
+                    self.runtime["discover_dependency_root"](inputs)
+                with patch.dict(os.environ, {"GPU1_DEPENDENCY_ROOT": str(nested)}):
+                    self.assertEqual(
+                        self.runtime["discover_dependency_root"](inputs), nested
+                    )
+            with (
+                patch.dict(os.environ, {"GPU1_DEPENDENCY_ROOT": ""}),
+                patch.dict(self.runtime, {"sys": types.SimpleNamespace(path=[])}),
+            ):
+                self.assertEqual(
+                    self.runtime["discover_dependency_root"](inputs), nested
+                )
+
+    def test_gpu_loader_sets_ptxas_and_process_local_unsloth_cache_before_imports(
+        self,
+    ) -> None:
+        runtime = self.runtime
+        ptxas_dirs: list[str] = []
+        with TemporaryDirectory() as directory:
+            ptxas = Path(directory) / "ptxas"
+            ptxas.write_text("#!/bin/sh\nexit 0\n", encoding="utf-8")
+            ptxas.chmod(0o755)
+            dependency_root = Path(directory) / "fake-dependency-root"
+            (dependency_root / "unsloth").mkdir(parents=True)
+            (dependency_root / "unsloth/__init__.py").write_text(
+                "import os\nfrom pathlib import Path\n"
+                "assert Path(os.environ['UNSLOTH_COMPILE_LOCATION']).is_dir()\n"
+                f"assert os.environ['TRITON_PTXAS_PATH'] == {str(ptxas)!r}\n"
+                "READY = True\n",
+                encoding="utf-8",
+            )
+            source = base64.b64encode(
+                b"import sys\n"
+                b"if not getattr(sys.modules.get('unsloth'), 'READY', False):\n"
+                b"    raise RuntimeError('unsloth was not imported first')\n"
+            ).decode()
+            encoded_sources = {
+                f"{name}.py": source
+                for name in ("arc_loader", "arc_decoder", "arc_solver")
+            }
+            original_sources = runtime["VENDORED_SOURCES_B64"]
+            original_check_abi = runtime["check_python_abi"]
+
+            def load_child(result_queue: Any) -> None:
+                sys.modules.pop("unsloth", None)
+                runtime["_load_gpu_modules"](dependency_root)
+                result_queue.put(
+                    (
+                        os.environ["UNSLOTH_COMPILE_LOCATION"],
+                        os.environ["TRITON_PTXAS_PATH"],
+                    )
+                )
+
+            try:
+                with (
+                    patch.dict(
+                        runtime,
+                        {
+                            "VENDORED_SOURCES_B64": encoded_sources,
+                            "check_python_abi": lambda: None,
+                        },
+                    ),
+                    patch.dict(
+                        os.environ,
+                        {"TRITON_PTXAS_PATH": str(ptxas)},
+                        clear=False,
+                    ),
+                ):
+                    with self.assertRaisesRegex(
+                        self.runtime["GPU1Error"], "executable ptxas"
+                    ):
+                        with patch.dict(
+                            os.environ,
+                            {"TRITON_PTXAS_PATH": str(ptxas) + ".missing"},
+                        ):
+                            runtime["_load_gpu_modules"](
+                                Path(directory) / "fake-dependency-root"
+                            )
+
+                    context = mp.get_context("fork")
+                    result_queue = context.Queue()
+                    processes = [
+                        context.Process(target=load_child, args=(result_queue,))
+                        for _ in range(2)
+                    ]
+                    for process in processes:
+                        process.start()
+                    values = [result_queue.get(timeout=5) for _ in processes]
+                    for process in processes:
+                        process.join(timeout=5)
+                    self.assertTrue(all(process.exitcode == 0 for process in processes))
+                    self.assertEqual({value[1] for value in values}, {str(ptxas)})
+                    caches = {value[0] for value in values}
+                    self.assertEqual(len(caches), 2)
+                    self.assertTrue(all(Path(cache).is_dir() for cache in caches))
+                    ptxas_dirs.extend(caches)
+            finally:
+                runtime["VENDORED_SOURCES_B64"] = original_sources
+                runtime["check_python_abi"] = original_check_abi
+        for cache in ptxas_dirs:
+            shutil.rmtree(cache, ignore_errors=True)
+
+    def test_run_real_records_worker_error_per_missing_arm(self) -> None:
+        runtime = self.runtime
+        task = {
+            "train": [{"input": [[0]], "output": [[0]]}],
+            "test": [{"input": [[0]]}],
+        }
+        smoke_id = "00000000"
+        pilot_id = "cafebabe"
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            challenges_path = root / "arc-agi_training_challenges.json"
+            solutions_path = root / "arc-agi_training_solutions.json"
+            challenges_path.write_text(
+                json.dumps({smoke_id: task, pilot_id: task}), encoding="utf-8"
+            )
+            solutions_path.write_text(
+                json.dumps({smoke_id: [[[0]]], pilot_id: [[[0]]]}),
+                encoding="utf-8",
+            )
+            output = root / "run"
+            smoke_prediction = {
+                "attempt_1": [[0]],
+                "attempt_2": [[0]],
+            }
+
+            def fake_supervise(
+                assignments: list[list[str]],
+                worker: Any,
+                _config: dict[str, Any],
+                _clock: Any,
+                on_event: Any = None,
+            ) -> dict[str, Any]:
+                if worker is runtime["gpu_preflight_worker"]:
+                    return {
+                        "events": [{"kind": "preflight", "status": "complete"}],
+                        "hard_timeout": False,
+                        "exitcodes": [0],
+                    }
+                if worker is runtime["gpu_worker"] and assignments == [[smoke_id]]:
+                    return {
+                        "events": [
+                            {
+                                "kind": "task",
+                                "task_id": smoke_id,
+                                "arms": {
+                                    arm: {
+                                        "status": "complete",
+                                        "model_loaded": True,
+                                        "training_succeeded": True,
+                                        "predictions": [smoke_prediction],
+                                        "diagnostics": {"adapter_reset_verified": True},
+                                    }
+                                    for arm in runtime["arm_order"]()
+                                },
+                            }
+                        ],
+                        "hard_timeout": False,
+                        "exitcodes": [0],
+                    }
+                on_event(
+                    {
+                        "kind": "arm",
+                        "task_id": pilot_id,
+                        "arm": "inference_only",
+                        "result": {
+                            "status": "complete",
+                            "predictions": [smoke_prediction],
+                        },
+                    }
+                )
+                on_event(
+                    {
+                        "kind": "worker_error",
+                        "task_ids": [pilot_id],
+                        "error": "AttributeError: UnslothKTOTrainer",
+                        "traceback": "Traceback (most recent call last):\nworker boom",
+                    }
+                )
+                return {"events": [], "hard_timeout": False, "exitcodes": [1]}
+
+            replacements = {
+                "check_python_abi": lambda: None,
+                "select_task_ids": lambda _challenges: {
+                    "smoke": [smoke_id],
+                    "pilot": [pilot_id],
+                },
+                "discover_model_dir": lambda _root: root,
+                "discover_dependency_root": lambda _root: root,
+                "model_fingerprint": lambda _path: {"directory": str(root)},
+                "dependency_fingerprint": lambda _path: {"root": str(root)},
+                "compile_vendored_sources": lambda: {},
+                "runtime_source_fingerprint": lambda: "runtime",
+                "supervise_workers": fake_supervise,
+            }
+            with (
+                patch.dict(
+                    os.environ,
+                    {
+                        "GPU1_INPUT_ROOT": str(root),
+                        "GPU1_MODE": "real",
+                    },
+                ),
+                patch.dict(runtime, replacements),
+            ):
+                summary = runtime["run_real"](output)
+
+            saved_summary = json.loads((output / "summary.json").read_text())
+            saved_task = json.loads((output / "tasks" / f"{pilot_id}.json").read_text())
+            self.assertEqual(summary["status"], "error")
+            self.assertEqual(saved_summary["status"], "error")
+            inference = saved_task["arms"]["inference_only"]
+            failed = saved_task["arms"]["ttt"]
+            self.assertEqual(inference["status"], "complete")
+            self.assertEqual(inference["predictions"], [smoke_prediction])
+            self.assertEqual(failed["status"], "error")
+            self.assertEqual(
+                failed["diagnostics"]["original_error"],
+                "AttributeError: UnslothKTOTrainer",
+            )
+            self.assertEqual(
+                failed["diagnostics"]["original_traceback"],
+                "Traceback (most recent call last):\nworker boom",
+            )
+            self.assertEqual(failed["diagnostics"]["model_outputs"], 0)
+            self.assertTrue(failed["diagnostics"]["fallback_mask"])
+            report = saved_summary["by_task"][pilot_id]["ttt"]["diagnostics"]
+            self.assertEqual(
+                report["original_error"], failed["diagnostics"]["original_error"]
+            )
+            self.assertEqual(
+                report["original_traceback"],
+                failed["diagnostics"]["original_traceback"],
+            )
+
+    def test_real_run_rejects_wrong_python_before_creating_output(self) -> None:
+        def unsupported_python() -> None:
+            raise self.runtime["GPU1Error"]("ABI mismatch")
+
+        with TemporaryDirectory() as directory:
+            output = Path(directory) / "run"
+            with patch.dict(self.runtime, {"check_python_abi": unsupported_python}):
+                with self.assertRaisesRegex(self.runtime["GPU1Error"], "ABI mismatch"):
+                    self.runtime["run_real"](output)
+            self.assertFalse(output.exists())
 
     def test_adapter_reset_copies_state_and_arm_switch_is_fixed(self) -> None:
         captured = []

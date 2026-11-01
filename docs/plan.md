@@ -669,3 +669,63 @@ No Kaggle notebook integration, upload, or submission is part of A2.
   smoke, paired-worker, fallback, and scoring callers. No concrete security or
   logic blockers remained. The complete repository suite has 67 passing tests;
   real GPU validation is still the next unchecked human checkpoint.
+
+### GPU-1 hosted dependency discovery correction
+
+- User-reported hosted evidence: the fresh Python 3.13.15 session failed after
+  attaching the legacy utility bundle. Copying the setup notebook with its
+  original environment retained Python 3.11.13 and survived the attachment.
+  Package metadata then matched the reference: torch 2.8.0, Unsloth 2025.9.7,
+  unsloth_zoo 2025.9.9, Flash Attention 2.8.2, NumPy 2.2.6. This establishes
+  startup and package discovery, not successful CUDA imports or inference.
+- Confirmed root:
+  `/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch`.
+  The old resolver searched only `/kaggle/input` at a limited depth. The fix
+  locates the top-level Unsloth package without importing it, checks local
+  `sys.path` roots and nested ordinary Inputs, deduplicates resolved paths,
+  preserves the explicit override, and rejects ambiguous matches.
+- Real mode now checks CPython 3.11 before creating the output directory or
+  scanning inputs. The introduction describes preserving the upstream image;
+  importing notebook language metadata alone does not pin that image.
+- RED-GREEN regressions cover the observed Utility Script layout, package
+  discovery by import origin, deeply nested Inputs, ambiguity, explicit override,
+  and early ABI failure without output-directory mutation. Format, lint,
+  typecheck, and all **69 tests** pass. Every cell also passed CPU-check mode
+  in fresh project kernels from root and detached scratch working directories;
+  evidence is ignored under `artifacts/gpu1-mount-fix-dbsp7v_8/`.
+- Model/training/decoding/ranking code and pinned vendor payloads are unchanged.
+  No hosted GPU run, weight download, commit, push, or submission was performed
+  for this correction. The next GPU run remains unverified.
+- Independent focused review passed for corrected notebook SHA-256
+  `6e3dd61c995ddfdfcde1ebc39e83125c8ac92b2b026540159e830aaacf169067`.
+
+### GPU-1 worker startup/reporting fix checkpoint (2026-11-02)
+
+- [x] Isolate each child process's Unsloth compiler cache before importing
+  Unsloth or the vendored Transformers loader. The loader validates the
+  executable `TRITON_PTXAS_PATH`, defaulting to `/usr/local/cuda/bin/ptxas`
+  while preserving a valid explicit override, and uses a process-local
+  temporary `UNSLOTH_COMPILE_LOCATION`.
+- [x] Preserve completed arm predictions when a later task/worker fails.
+  Missing arms become `error` entries with the original error and traceback;
+  symbolic fallbacks remain marked as fallback and repeated scoring preserves
+  provenance.
+- [x] Add CPU-only RED-GREEN checks for loader ordering/cache separation and
+  the actual `run_real` event-to-task/summary reporting path. Final local
+  gates passed: the two new tests failed before implementation and passed
+  afterward; `ruff format --check` reported 11 files already formatted,
+  `ruff check` passed, `ty check` passed on the extracted trusted notebook
+  code plus `tests` and `scripts`, and the unittest suite passed **71 tests**.
+  `git diff --check` is run as the final handoff check.
+- [x] Verify the startup correction from the user's saved Kaggle outputs.
+  Preflight and smoke passed; all four workers completed all eight pilot tasks
+  in both arms, with no error events, model-arm fallbacks or hard timeout.
+  Independent exact-grid rescoring against hash-matched training solutions
+  confirms **9/9 outputs and 8/8 tasks** for inference-only and TTT, all correct
+  in attempt 1. TTT added no correct outputs and used 594.55 summed worker
+  training seconds. Reported peak device memory was 10.42 GiB inference-only
+  and 12.71 GiB with TTT. This is public training-task reproduction evidence,
+  not clean unseen generalization or a leaderboard score.
+  Original uploads and hashes are ignored under
+  `artifacts/gpu1-hosted-complete-cpbqc344/`; the exact hosted notebook source
+  was not supplied. No competition submission was made.
