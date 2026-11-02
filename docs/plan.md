@@ -879,3 +879,13 @@ No Kaggle notebook integration, upload, or submission is part of A2.
   GPU2 was committed/pushed as `3fa5707` (PR #9). GPU3/full notebooks, their tests
   and these checkpoint updates form the separate TTT/integration change;
   raw data and hosted run artifacts remain ignored.
+- [x] Execute the full real run `kevinmhk/arc-gpu-full-submission` on 240 tasks /
+  259 outputs with the pinned image, L4x4, Internet off: 6367.8 seconds (1h46m),
+  peak device memory 16.7 GiB, all four worker exit codes zero, no errors,
+  no solutions loaded. 258/259 outputs came from the model; task `0e206a2e` used
+  the symbolic fallback, so application status is `incomplete` by the declared
+  coverage rule, not an execution failure. Submission schema, key set, output
+  counts, two attempts, integer grid bounds and input hash all validated
+  independently. Preserved as `artifacts/gpu-submission-full-run/`
+  (submission SHA-256 `2b99f3cf6a7fc866b93c602ed78eb9fed9fa3cd26eb7c9aa8e1e9106f8096e36`).
+  Hidden-test accuracy remains unmeasured; no competition submission was made.
