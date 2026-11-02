@@ -1,0 +1,980 @@
+{
+  "by_task": {
+    "4522001f": {
+      "inference_only": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.041239421999989645,
+          "adapter_reset_verified": true,
+          "candidate_count": 21,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560488.8487058,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": null,
+          "training_truncated_context": 0,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 9543,
+          "infer_peak_device_mb": 9543,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 0
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 68.80193538799995,
+          "setup_seconds": 0.10141238300002442,
+          "task_total_seconds": 69.04646941099986,
+          "total_seconds": 68.90339069000015,
+          "train_seconds": 0.0
+        }
+      },
+      "symbolic": {
+        "diagnostics": {
+          "expected_outputs": 1,
+          "fallback_mask": [
+            true
+          ],
+          "fallback_outputs": 1,
+          "output_sources": [
+            "symbolic_fallback"
+          ]
+        },
+        "memory": {},
+        "status": "symbolic_fallback",
+        "timing": {}
+      },
+      "ttt": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.04011871400007294,
+          "adapter_reset_verified": true,
+          "candidate_count": 25,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560618.2052903,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": [
+            128,
+            0.007868234068155289,
+            {
+              "epoch": 1.0,
+              "total_flos": 690438490030080.0,
+              "train_loss": 0.007868234068155289,
+              "train_runtime": 55.1356,
+              "train_samples_per_second": 2.322,
+              "train_steps_per_second": 2.322
+            }
+          ],
+          "training_truncated_context": 128,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 13012,
+          "infer_peak_device_mb": 9543,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 13012
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 67.56185285200013,
+          "setup_seconds": 0.10308543900009681,
+          "task_total_seconds": 197.16297110899995,
+          "total_seconds": 128.11599046900005,
+          "train_seconds": 60.45081521399993
+        }
+      }
+    },
+    "5289ad53": {
+      "inference_only": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.04191326000000117,
+          "adapter_reset_verified": true,
+          "candidate_count": 18,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560164.3082092,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": null,
+          "training_truncated_context": 0,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 10309,
+          "infer_peak_device_mb": 10309,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 0
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 9.42179141600002,
+          "setup_seconds": 0.10212447000003522,
+          "task_total_seconds": 9.670333395000057,
+          "total_seconds": 9.523974339999995,
+          "train_seconds": 0.0
+        }
+      },
+      "symbolic": {
+        "diagnostics": {
+          "expected_outputs": 1,
+          "fallback_mask": [
+            true
+          ],
+          "fallback_outputs": 1,
+          "output_sources": [
+            "symbolic_fallback"
+          ]
+        },
+        "memory": {},
+        "status": "symbolic_fallback",
+        "timing": {}
+      },
+      "ttt": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.04107381799997256,
+          "adapter_reset_verified": true,
+          "candidate_count": 18,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560259.9656157,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": [
+            128,
+            0.22512811422348022,
+            {
+              "epoch": 1.0,
+              "total_flos": 2344614039060480.0,
+              "train_loss": 0.22512811422348022,
+              "train_runtime": 80.467,
+              "train_samples_per_second": 1.591,
+              "train_steps_per_second": 1.591
+            }
+          ],
+          "training_truncated_context": 128,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 13012,
+          "infer_peak_device_mb": 10309,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 13012
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 10.573671874999945,
+          "setup_seconds": 0.10218392500007667,
+          "task_total_seconds": 106.47961993499996,
+          "total_seconds": 96.80878802999996,
+          "train_seconds": 86.13269740199996
+        }
+      }
+    },
+    "6ea4a07e": {
+      "inference_only": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.04979158899993763,
+          "adapter_reset_verified": true,
+          "candidate_count": 36,
+          "expected_outputs": 2,
+          "fallback_mask": [
+            false,
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560089.9119782,
+          "invalid_candidates": 0,
+          "model_outputs": 2,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model",
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": null,
+          "training_truncated_context": 0,
+          "truncated_context": 32
+        },
+        "memory": {
+          "arm_peak_device_mb": 9494,
+          "infer_peak_device_mb": 9494,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 0
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 13.392770594000012,
+          "setup_seconds": 0.13128870699995332,
+          "task_total_seconds": 13.665878477999968,
+          "total_seconds": 13.524108493999961,
+          "train_seconds": 0.0
+        }
+      },
+      "symbolic": {
+        "diagnostics": {
+          "expected_outputs": 2,
+          "fallback_mask": [
+            true,
+            true
+          ],
+          "fallback_outputs": 2,
+          "output_sources": [
+            "symbolic_fallback",
+            "symbolic_fallback"
+          ]
+        },
+        "memory": {},
+        "status": "symbolic_fallback",
+        "timing": {}
+      },
+      "ttt": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.04430633700008002,
+          "adapter_reset_verified": true,
+          "candidate_count": 32,
+          "expected_outputs": 2,
+          "fallback_mask": [
+            false,
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560164.947791,
+          "invalid_candidates": 0,
+          "model_outputs": 2,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model",
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": [
+            128,
+            0.10639640688896179,
+            {
+              "epoch": 1.0,
+              "total_flos": 575365408358400.0,
+              "train_loss": 0.10639640688896179,
+              "train_runtime": 56.078,
+              "train_samples_per_second": 2.283,
+              "train_steps_per_second": 2.283
+            }
+          ],
+          "training_truncated_context": 128,
+          "truncated_context": 32
+        },
+        "memory": {
+          "arm_peak_device_mb": 13012,
+          "infer_peak_device_mb": 9502,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 13012
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 7.995045404000052,
+          "setup_seconds": 0.10561386800009132,
+          "task_total_seconds": 83.30396560099996,
+          "total_seconds": 69.63717223599997,
+          "train_seconds": 61.536271169999964
+        }
+      }
+    },
+    "94414823": {
+      "inference_only": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.04100516299990886,
+          "adapter_reset_verified": true,
+          "candidate_count": 16,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560173.1873415,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": null,
+          "training_truncated_context": 0,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 10178,
+          "infer_peak_device_mb": 10178,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 0
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 34.206982180999944,
+          "setup_seconds": 0.09953097799996158,
+          "task_total_seconds": 34.45038614199996,
+          "total_seconds": 34.30656283799999,
+          "train_seconds": 0.0
+        }
+      },
+      "symbolic": {
+        "diagnostics": {
+          "expected_outputs": 1,
+          "fallback_mask": [
+            true
+          ],
+          "fallback_outputs": 1,
+          "output_sources": [
+            "symbolic_fallback"
+          ]
+        },
+        "memory": {},
+        "status": "symbolic_fallback",
+        "timing": {}
+      },
+      "ttt": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.03961133600000721,
+          "adapter_reset_verified": true,
+          "candidate_count": 16,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560289.4657545,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": [
+            128,
+            0.0007461150526069105,
+            {
+              "epoch": 1.0,
+              "total_flos": 2167209704816640.0,
+              "train_loss": 0.0007461150526069105,
+              "train_runtime": 76.4038,
+              "train_samples_per_second": 1.675,
+              "train_steps_per_second": 1.675
+            }
+          ],
+          "training_truncated_context": 128,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 13012,
+          "infer_peak_device_mb": 10178,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 13012
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 35.25040650599999,
+          "setup_seconds": 0.10119288500004586,
+          "task_total_seconds": 151.77222263499993,
+          "total_seconds": 117.32131095099999,
+          "train_seconds": 81.96946873299999
+        }
+      }
+    },
+    "9720b24f": {
+      "inference_only": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.0418639950000852,
+          "adapter_reset_verified": true,
+          "candidate_count": 16,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560166.6086395,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": null,
+          "training_truncated_context": 0,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 10673,
+          "infer_peak_device_mb": 10673,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 0
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 53.331594382999924,
+          "setup_seconds": 0.10043558400002439,
+          "task_total_seconds": 53.57898672399995,
+          "total_seconds": 53.43207203999998,
+          "train_seconds": 0.0
+        }
+      },
+      "symbolic": {
+        "diagnostics": {
+          "expected_outputs": 1,
+          "fallback_mask": [
+            true
+          ],
+          "fallback_outputs": 1,
+          "output_sources": [
+            "symbolic_fallback"
+          ]
+        },
+        "memory": {},
+        "status": "symbolic_fallback",
+        "timing": {}
+      },
+      "ttt": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.040981686000009176,
+          "adapter_reset_verified": true,
+          "candidate_count": 16,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560336.1881404,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": [
+            128,
+            0.0007367611397057772,
+            {
+              "epoch": 1.0,
+              "total_flos": 3375477062369280.0,
+              "train_loss": 0.0007367611397057772,
+              "train_runtime": 110.4031,
+              "train_samples_per_second": 1.159,
+              "train_steps_per_second": 1.159
+            }
+          ],
+          "training_truncated_context": 128,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 13012,
+          "infer_peak_device_mb": 10673,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 13012
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 53.50069135000001,
+          "setup_seconds": 0.10250483599998006,
+          "task_total_seconds": 223.327584334,
+          "total_seconds": 169.74805101799996,
+          "train_seconds": 116.14463038899999
+        }
+      }
+    },
+    "ce4f8723": {
+      "inference_only": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.04824863900000764,
+          "adapter_reset_verified": true,
+          "candidate_count": 16,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560090.0027041,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": null,
+          "training_truncated_context": 0,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 9649,
+          "infer_peak_device_mb": 9649,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 0
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 8.289702530999989,
+          "setup_seconds": 0.12499473200000466,
+          "task_total_seconds": 8.554050877999998,
+          "total_seconds": 8.414741896999999,
+          "train_seconds": 0.0
+        }
+      },
+      "symbolic": {
+        "diagnostics": {
+          "expected_outputs": 1,
+          "fallback_mask": [
+            true
+          ],
+          "fallback_outputs": 1,
+          "output_sources": [
+            "symbolic_fallback"
+          ]
+        },
+        "memory": {},
+        "status": "symbolic_fallback",
+        "timing": {}
+      },
+      "ttt": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.04442919600001005,
+          "adapter_reset_verified": true,
+          "candidate_count": 16,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560159.5735207,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": [
+            128,
+            0.04016140475869179,
+            {
+              "epoch": 1.0,
+              "total_flos": 875834010501120.0,
+              "train_loss": 0.04016140475869179,
+              "train_runtime": 55.6209,
+              "train_samples_per_second": 2.301,
+              "train_steps_per_second": 2.301
+            }
+          ],
+          "training_truncated_context": 128,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 13012,
+          "infer_peak_device_mb": 9657,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 13012
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 6.786429683000051,
+          "setup_seconds": 0.10532882099994367,
+          "task_total_seconds": 76.62159470200004,
+          "total_seconds": 68.066769765,
+          "train_seconds": 61.174755177000065
+        }
+      }
+    },
+    "ecb67b6d": {
+      "inference_only": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.049136688000089634,
+          "adapter_reset_verified": true,
+          "candidate_count": 17,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560089.949028,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": null,
+          "training_truncated_context": 0,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 10171,
+          "infer_peak_device_mb": 10171,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 0
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 147.26363109300007,
+          "setup_seconds": 0.12137042900008055,
+          "task_total_seconds": 147.52614022600005,
+          "total_seconds": 147.38504746600006,
+          "train_seconds": 0.0
+        }
+      },
+      "symbolic": {
+        "diagnostics": {
+          "expected_outputs": 1,
+          "fallback_mask": [
+            true
+          ],
+          "fallback_outputs": 1,
+          "output_sources": [
+            "symbolic_fallback"
+          ]
+        },
+        "memory": {},
+        "status": "symbolic_fallback",
+        "timing": {}
+      },
+      "ttt": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.04421183200008727,
+          "adapter_reset_verified": true,
+          "candidate_count": 20,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560303.1581483,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": [
+            128,
+            0.016258014366030693,
+            {
+              "epoch": 1.0,
+              "total_flos": 1483164163768320.0,
+              "train_loss": 0.016258014366030693,
+              "train_runtime": 60.2854,
+              "train_samples_per_second": 2.123,
+              "train_steps_per_second": 2.123
+            }
+          ],
+          "training_truncated_context": 128,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 13012,
+          "infer_peak_device_mb": 10179,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 13012
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 185.44438213299998,
+          "setup_seconds": 0.10474107599998206,
+          "task_total_seconds": 398.9160110660001,
+          "total_seconds": 251.38898364699992,
+          "train_seconds": 65.83962677800002
+        }
+      }
+    },
+    "f2829549": {
+      "inference_only": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.04977905200007626,
+          "adapter_reset_verified": true,
+          "candidate_count": 16,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560089.9130952,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": null,
+          "training_truncated_context": 0,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 9633,
+          "infer_peak_device_mb": 9633,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 0
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 7.104193302999988,
+          "setup_seconds": 0.1270095230000834,
+          "task_total_seconds": 7.37023934299998,
+          "total_seconds": 7.231250740000064,
+          "train_seconds": 0.0
+        }
+      },
+      "symbolic": {
+        "diagnostics": {
+          "expected_outputs": 1,
+          "fallback_mask": [
+            true
+          ],
+          "fallback_outputs": 1,
+          "output_sources": [
+            "symbolic_fallback"
+          ]
+        },
+        "memory": {},
+        "status": "symbolic_fallback",
+        "timing": {}
+      },
+      "ttt": {
+        "diagnostics": {
+          "adapter_reset_seconds": 0.04458443900000475,
+          "adapter_reset_verified": true,
+          "candidate_count": 16,
+          "expected_outputs": 1,
+          "fallback_mask": [
+            false
+          ],
+          "fallback_outputs": 0,
+          "inference_deadline_epoch": 1793560158.4321234,
+          "invalid_candidates": 0,
+          "model_outputs": 1,
+          "original_error": null,
+          "original_reason": null,
+          "original_status": "complete",
+          "original_traceback": null,
+          "output_sources": [
+            "model"
+          ],
+          "status": "complete",
+          "train_stats": [
+            128,
+            0.03844205290079117,
+            {
+              "epoch": 1.0,
+              "total_flos": 879030484992000.0,
+              "train_loss": 0.03844205290079117,
+              "train_runtime": 55.7932,
+              "train_samples_per_second": 2.294,
+              "train_steps_per_second": 2.294
+            }
+          ],
+          "training_truncated_context": 128,
+          "truncated_context": 16
+        },
+        "memory": {
+          "arm_peak_device_mb": 13012,
+          "infer_peak_device_mb": 9641,
+          "load_peak_device_mb": 0,
+          "train_peak_device_mb": 13012
+        },
+        "status": "complete",
+        "timing": {
+          "infer_seconds": 5.6261949689999255,
+          "setup_seconds": 0.10716194799999812,
+          "task_total_seconds": 74.41126831400004,
+          "total_seconds": 67.04015332899996,
+          "train_seconds": 61.30654051800002
+        }
+      }
+    }
+  },
+  "full8": {
+    "inference_only": {
+      "correct_outputs": 9,
+      "official_score": 1.0,
+      "output_accuracy": 1.0,
+      "solved_tasks": 8,
+      "task_averaged_pass_at_2": 1.0,
+      "task_solve_rate": 1.0,
+      "total_outputs": 9,
+      "total_tasks": 8
+    },
+    "symbolic": {
+      "correct_outputs": 0,
+      "official_score": 0.0,
+      "output_accuracy": 0.0,
+      "solved_tasks": 0,
+      "task_averaged_pass_at_2": 0.0,
+      "task_solve_rate": 0.0,
+      "total_outputs": 9,
+      "total_tasks": 8
+    },
+    "ttt": {
+      "correct_outputs": 9,
+      "official_score": 1.0,
+      "output_accuracy": 1.0,
+      "solved_tasks": 8,
+      "task_averaged_pass_at_2": 1.0,
+      "task_solve_rate": 1.0,
+      "total_outputs": 9,
+      "total_tasks": 8
+    }
+  },
+  "full8_deltas": {
+    "inference_only_vs_symbolic": {
+      "added_outputs": 9,
+      "added_tasks": 8,
+      "lost_outputs": 0,
+      "lost_tasks": 0
+    },
+    "ttt_vs_inference_only": {
+      "added_outputs": 0,
+      "added_tasks": 0,
+      "lost_outputs": 0,
+      "lost_tasks": 0
+    },
+    "ttt_vs_symbolic": {
+      "added_outputs": 9,
+      "added_tasks": 8,
+      "lost_outputs": 0,
+      "lost_tasks": 0
+    }
+  },
+  "label": "GPU run result; CPU checks do not establish CUDA accuracy",
+  "paired_completed": {
+    "inference_only": {
+      "correct_outputs": 9,
+      "official_score": 1.0,
+      "output_accuracy": 1.0,
+      "solved_tasks": 8,
+      "task_averaged_pass_at_2": 1.0,
+      "task_solve_rate": 1.0,
+      "total_outputs": 9,
+      "total_tasks": 8
+    },
+    "task_ids": [
+      "f2829549",
+      "6ea4a07e",
+      "ecb67b6d",
+      "ce4f8723",
+      "5289ad53",
+      "94414823",
+      "4522001f",
+      "9720b24f"
+    ],
+    "ttt": {
+      "correct_outputs": 9,
+      "official_score": 1.0,
+      "output_accuracy": 1.0,
+      "solved_tasks": 8,
+      "task_averaged_pass_at_2": 1.0,
+      "task_solve_rate": 1.0,
+      "total_outputs": 9,
+      "total_tasks": 8
+    }
+  },
+  "paired_completed_deltas": {
+    "inference_only_vs_symbolic": {
+      "added_outputs": 9,
+      "added_tasks": 8,
+      "lost_outputs": 0,
+      "lost_tasks": 0
+    },
+    "ttt_vs_inference_only": {
+      "added_outputs": 0,
+      "added_tasks": 0,
+      "lost_outputs": 0,
+      "lost_tasks": 0
+    },
+    "ttt_vs_symbolic": {
+      "added_outputs": 9,
+      "added_tasks": 8,
+      "lost_outputs": 0,
+      "lost_tasks": 0
+    }
+  },
+  "status": "complete"
+}

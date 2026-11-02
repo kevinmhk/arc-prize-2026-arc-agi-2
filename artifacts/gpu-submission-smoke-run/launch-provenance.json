@@ -1,0 +1,13 @@
+{
+  "kernel_ref": "kevinmhk/arc-gpu-submission-smoke/2",
+  "production_sha256": "d13c5864eba2f7ff3919d7949c3a19ba49fb0e5612f8cb094279c553ec13db56",
+  "smoke_wrapper_sha256": "0ea406a031589b052e40d614f770bdbfc5d915866bcfc356900c109325217997",
+  "recorded_epoch": 1793590084.2934968,
+  "mode": "smoke",
+  "model_task_limit": 2,
+  "all_other_tasks": "genuine symbolic fallback",
+  "notebook_hard_seconds": 1200,
+  "host_timeout_seconds": 1320,
+  "metadata_source_readback_verified": true,
+  "competition_submission": false
+}

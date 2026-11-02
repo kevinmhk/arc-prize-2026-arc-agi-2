@@ -1,0 +1,1369 @@
+{
+  "budget": {
+    "graceful_seconds": 41400.0,
+    "hard_seconds": 42600,
+    "worker_hard_seconds": 42480.0
+  },
+  "claims": {
+    "accuracy_measured": false,
+    "gpu_measured": true,
+    "model_loaded": true
+  },
+  "dependencies": {
+    "files": [
+      {
+        "bytes": 16701,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/unsloth/models/qwen3.py",
+        "sha256": "0c360b0a7c7ed47c05e113c300791a502c878f3087ab24dfd949855429fe0e30"
+      },
+      {
+        "bytes": 19601,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/accelerate-1.11.0.dist-info/METADATA",
+        "sha256": "e1af8b1facd98dca101c154b30e4ead62104841f549ca19a418054b2bc2d593a"
+      },
+      {
+        "bytes": 5915,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/aiohappyeyeballs-2.6.1.dist-info/METADATA",
+        "sha256": "3525e5849c007e2dfcd1e123028ec14383ff4d56a5f718b4aa4c995a26ccb153"
+      },
+      {
+        "bytes": 8135,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/aiohttp-3.13.2.dist-info/METADATA",
+        "sha256": "df1afc67261322787dd3d4ea09d6612880b7ee0e674e0c8ff8d8ffca0942b390"
+      },
+      {
+        "bytes": 3662,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/aiosignal-1.4.0.dist-info/METADATA",
+        "sha256": "09247ef1da8bc696728d47130e702e4307f6f7d101d6c485bff9f3a71ce7008d"
+      },
+      {
+        "bytes": 10473,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/attrs-25.4.0.dist-info/METADATA",
+        "sha256": "d917abc63eda81c311c62c1d92dea50b682ea870269062821f5de75962bb6684"
+      },
+      {
+        "bytes": 10251,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/bitsandbytes-0.48.2.dist-info/METADATA",
+        "sha256": "a83be38ceb78877dc025a57c23a2204575971ebfc5ca59bc79f8ed8aec8ecaa5"
+      },
+      {
+        "bytes": 2474,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/certifi-2025.10.5.dist-info/METADATA",
+        "sha256": "473c91e2c4fac51375a4d372db820754e959b83261d4135f68c6b4e3311a76d9"
+      },
+      {
+        "bytes": 37303,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/charset_normalizer-3.4.4.dist-info/METADATA",
+        "sha256": "8d5b94141b62f1d6afd7d60bbd68acb138a155d176a33518e0a28cc3b8dd9014"
+      },
+      {
+        "bytes": 5461,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/contourpy-1.3.3.dist-info/METADATA",
+        "sha256": "c43cef86baef09cff9c77975e578fa8cca0c9454df40dc176938b499a63de54a"
+      },
+      {
+        "bytes": 9325,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/cut_cross_entropy-25.1.1.dist-info/METADATA",
+        "sha256": "97f45845f5ef0085d9f249c11bf04f7bc1cfdf6430befeffaaaafd02bfe4dcc8"
+      },
+      {
+        "bytes": 3779,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/cycler-0.12.1.dist-info/METADATA",
+        "sha256": "23289e19b76f1e01394227696e6af2b6cd1ce79e89731209bf9195148b18ed36"
+      },
+      {
+        "bytes": 19747,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/datasets-3.6.0.dist-info/METADATA",
+        "sha256": "acdc9e7c4aac1baf95f04869a9d365f4dcadd5a54e8a723078f02e414a089374"
+      },
+      {
+        "bytes": 20120,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/diffusers-0.35.2.dist-info/METADATA",
+        "sha256": "44b5d29467522844c17a568c50c50c3d35e98ccdc56aa467dc0882aa5070bc57"
+      },
+      {
+        "bytes": 10106,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/dill-0.3.8.dist-info/METADATA",
+        "sha256": "531912b36714f09cab26c579912d1047d72b274ee1ad4252d91888310682e2cb"
+      },
+      {
+        "bytes": 3499,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/docstring_parser-0.17.0.dist-info/METADATA",
+        "sha256": "81b219f3c9c43eb0fbc52809bc93e0636070c3b482946d88ba768d75b8cf80fd"
+      },
+      {
+        "bytes": 2110,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/filelock-3.20.0.dist-info/METADATA",
+        "sha256": "808821a9d71b18dcb0c70e76a4dd36fdaf4ec45ab386303cbfef46b035ad3688"
+      },
+      {
+        "bytes": 23303,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/flash_attn-2.8.2.dist-info/METADATA",
+        "sha256": "eaa62dc5c6229919e6a0b40472ce3f55eef8d2d1b7001664a35bd24a3c0fd0e8"
+      },
+      {
+        "bytes": 112334,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/fonttools-4.60.1.dist-info/METADATA",
+        "sha256": "0886770f170aaa482341521aebc9dd59b7a8e073fecab90194e2eef9d999ca03"
+      },
+      {
+        "bytes": 20333,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/frozenlist-1.8.0.dist-info/METADATA",
+        "sha256": "946c22dc9f7e2c76f2d698f00a4306dbe49a820e2b3f1a0e22fe5286cbec35f1"
+      },
+      {
+        "bytes": 11747,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/fsspec-2025.3.0.dist-info/METADATA",
+        "sha256": "2f63a38e2923356a63be9f22e7f79ce75e42774f5e522f2a67fde97909961bc3"
+      },
+      {
+        "bytes": 1747,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/hf_transfer-0.1.9.dist-info/METADATA",
+        "sha256": "70849fb99f222aba6c6425a4c48f88151702de1b4304e08c5d74fe96227d1490"
+      },
+      {
+        "bytes": 4910,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/hf_xet-1.2.0.dist-info/METADATA",
+        "sha256": "53edc9ec39c8f94c9cb07f8e3d5feadbfb378e1b494a441889f434df24bd89ef"
+      },
+      {
+        "bytes": 14822,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/huggingface_hub-0.36.0.dist-info/METADATA",
+        "sha256": "26ce80563d3402f2935b7d881835b9b1a64d897dc2f986f52bf4114642de71ad"
+      },
+      {
+        "bytes": 8378,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/idna-3.11.dist-info/METADATA",
+        "sha256": "7c2c12c30f52ba237c4c81e59454804944025b9e6102cf1dcca9ebf5168411b0"
+      },
+      {
+        "bytes": 4760,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/importlib_metadata-8.7.0.dist-info/METADATA",
+        "sha256": "40932e75fa960e37e86ddce2a60507e60b242da85d5ee788832e37de68e4fd0c"
+      },
+      {
+        "bytes": 2871,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/jinja2-3.1.6.dist-info/METADATA",
+        "sha256": "68c5548fb67c4132a13898d9b31ec50c6bea2abdd915d921f214355c3a6499c8"
+      },
+      {
+        "bytes": 5582,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/joblib-1.5.2.dist-info/METADATA",
+        "sha256": "cf385b71bfce1aa630dedb3b3749e841826a5cb8ee15c5e75e06dadfacc44a3d"
+      },
+      {
+        "bytes": 6260,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/kiwisolver-1.4.9.dist-info/METADATA",
+        "sha256": "cad34a37b5cb66cfa1b9676f33721037ae2d850b9b0c71377478a1d6bf0c7d40"
+      },
+      {
+        "bytes": 7288,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/markdown_it_py-4.0.0.dist-info/METADATA",
+        "sha256": "e9fcaa1e2daf3f96d840a09fbaaa394feaadf37a36d88a7b6b6b672487c65bfb"
+      },
+      {
+        "bytes": 2690,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/markupsafe-3.0.3.dist-info/METADATA",
+        "sha256": "12b4cc61a7fa288cf7667ee3f213786d9619db57fb33ff6f934afbcb5c12ec81"
+      },
+      {
+        "bytes": 11268,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/matplotlib-3.10.6.dist-info/METADATA",
+        "sha256": "98f8b6dae4f3e446fa44c8684dc53db4f3003efde1ef16cf8c411bee0fef2bb1"
+      },
+      {
+        "bytes": 1638,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/mdurl-0.1.2.dist-info/METADATA",
+        "sha256": "b53b29d48f499367053fda3c81e7ce27d2558380ebbf83e66023b02eb7ddd25d"
+      },
+      {
+        "bytes": 8630,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/mpmath-1.3.0.dist-info/METADATA",
+        "sha256": "44b66ea444b9c0d19ae94815d356bf047ae6b680c19268b5c265687cd6a81406"
+      },
+      {
+        "bytes": 6907,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/msgspec-0.19.0.dist-info/METADATA",
+        "sha256": "f04db5993a3331d8d79b5e7eb1f9ac149d3b0170138d8f9ad224086027ae264f"
+      },
+      {
+        "bytes": 5321,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/multidict-6.7.0.dist-info/METADATA",
+        "sha256": "abfccee732c3a4b5462c7a63c3c04705184d5fbcae07afd195e8433993d8ad94"
+      },
+      {
+        "bytes": 7151,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/multiprocess-0.70.16.dist-info/METADATA",
+        "sha256": "4afd9e1f60a38f28d561aaf24caa8791b25397195503e49b9b3882824049790d"
+      },
+      {
+        "bytes": 6336,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/networkx-3.5.dist-info/METADATA",
+        "sha256": "18b28258a7a706532cc5e97549a0f1beb39ba7b299c085904367c4930d4f8b94"
+      },
+      {
+        "bytes": 62026,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/numpy-2.2.6.dist-info/METADATA",
+        "sha256": "22d648f53848429464ca643b40d73b49a920d47876fc77c395d4dca4e834904a"
+      },
+      {
+        "bytes": 1683,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cublas_cu12-12.8.4.1.dist-info/METADATA",
+        "sha256": "310556f1c2c31ec517d4b049eaf12374081d1c52c8ef4d8eceab2aaf1edff2df"
+      },
+      {
+        "bytes": 1730,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cuda_cupti_cu12-12.8.90.dist-info/METADATA",
+        "sha256": "6df7fa2fcdfa046eb952f3f8c172f524b2e19a654ec037da3dbb32e93d9671d1"
+      },
+      {
+        "bytes": 1684,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cuda_nvrtc_cu12-12.8.93.dist-info/METADATA",
+        "sha256": "376458a22054b4a36e110dfab570df4bc658c037a2fb47184bdc4dff7ab90d23"
+      },
+      {
+        "bytes": 1684,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cuda_runtime_cu12-12.8.90.dist-info/METADATA",
+        "sha256": "00431338ea983d4be2f46f9fd29cec2fd9bfa39553933ca59fd37192e7d0f82f"
+      },
+      {
+        "bytes": 1796,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cudnn_cu12-9.10.2.21.dist-info/METADATA",
+        "sha256": "7dc7ea3541119ddea15ed9a68e9f01e4a160b164607abad22f9dec54e2937266"
+      },
+      {
+        "bytes": 1741,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cufft_cu12-11.3.3.83.dist-info/METADATA",
+        "sha256": "ed11d2273b98e3897dc87ae88fcd7a0661b8a4c96529b93a5d22799fd4898de5"
+      },
+      {
+        "bytes": 1673,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cufile_cu12-1.13.1.3.dist-info/METADATA",
+        "sha256": "df713a26389a8052d17fee3c1521563e060b24a037983b3889fff54f906ef288"
+      },
+      {
+        "bytes": 1684,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_curand_cu12-10.3.9.90.dist-info/METADATA",
+        "sha256": "7d4df14884c3de2ec922c546d995cee62f9a0e5225b3eaf2d8951520212cbf6f"
+      },
+      {
+        "bytes": 1826,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cusolver_cu12-11.7.3.90.dist-info/METADATA",
+        "sha256": "1f06a55dc8f2aef9eb20f018044bfa7731124698ba7b435d11c250c62eaf4dc3"
+      },
+      {
+        "bytes": 1750,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cusparse_cu12-12.5.8.93.dist-info/METADATA",
+        "sha256": "e83b3bf81e6a2c1dc4d4ddcd73b283a88e6f7f9d20385d280ec030dbf5384f22"
+      },
+      {
+        "bytes": 6974,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cusparselt_cu12-0.7.1.dist-info/METADATA",
+        "sha256": "b264cea6951b70b52a3fd2ffaa88f9109eaf379633aa8d6e0832ecc92ddf6fba"
+      },
+      {
+        "bytes": 2019,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_nccl_cu12-2.27.3.dist-info/METADATA",
+        "sha256": "87ee999c55a3181761f4b7758a385539776b0cba3cda4fd0f8bff4da26c6e355"
+      },
+      {
+        "bytes": 1695,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_nvjitlink_cu12-12.8.93.dist-info/METADATA",
+        "sha256": "776feab012c1f3efce8918975dc08aa01793aa33832d87b377caa0448cad4435"
+      },
+      {
+        "bytes": 1820,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_nvtx_cu12-12.8.90.dist-info/METADATA",
+        "sha256": "c63c23e04e8cf04143721ff718cba87a2ae5630a50451b77f8357a0d26133cf1"
+      },
+      {
+        "bytes": 3281,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/packaging-25.0.dist-info/METADATA",
+        "sha256": "5b611a609c38fefc3d616bf45d20aec98fb7d53f245daca9e2c30fc85c7ac282"
+      },
+      {
+        "bytes": 91215,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pandas-2.3.3.dist-info/METADATA",
+        "sha256": "40ee953dc7ca155840b639a1881ff84578075187fce0ac20eeda55a7fa0d9a90"
+      },
+      {
+        "bytes": 14695,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/peft-0.17.1.dist-info/METADATA",
+        "sha256": "4481a2b864803aca67d1af15a42a575b4b61f06488f007add0add4f93ae1d629"
+      },
+      {
+        "bytes": 8808,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pillow-12.0.0.dist-info/METADATA",
+        "sha256": "ad620452bfa53cbfa294d7da7b66dab5a086a54ede0ce178bd74e380ebc434c8"
+      },
+      {
+        "bytes": 13745,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/propcache-0.4.1.dist-info/METADATA",
+        "sha256": "fc23f3c52b336d5335cd053f47d91ff6316949e65ad1f1e3dfccd5284f4d6ece"
+      },
+      {
+        "bytes": 593,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/protobuf-6.33.0.dist-info/METADATA",
+        "sha256": "56b9ff3cdb16013d60f1740e2d8c4d8025e92b644fe284b9d665933b9849a4d8"
+      },
+      {
+        "bytes": 23019,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/psutil-7.1.2.dist-info/METADATA",
+        "sha256": "9060d8b9832fb047375c7eeac0d3ca41668a9f56cea96f12e30ce72cc4acea8b"
+      },
+      {
+        "bytes": 3215,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pyarrow-22.0.0.dist-info/METADATA",
+        "sha256": "26d9e7d42b760b1d20e715eba938823f74e228e5ed49a36610d14e9eb7fa9191"
+      },
+      {
+        "bytes": 2512,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pygments-2.19.2.dist-info/METADATA",
+        "sha256": "7ae100d67d67006c6479803dd835fcf47a9b59fac794441ea8e66aa7f5984d82"
+      },
+      {
+        "bytes": 5030,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pyparsing-3.2.5.dist-info/METADATA",
+        "sha256": "cd543f26f0f59ac7b446f57cc91e8def7a3eb735fdd5e91c4e402b8725696eba"
+      },
+      {
+        "bytes": 8354,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/python_dateutil-2.9.0.post0.dist-info/METADATA",
+        "sha256": "a9d436da322be808332f98d88325998e87cb693a678a9969feb4cfad729a6e93"
+      },
+      {
+        "bytes": 22374,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pytz-2025.2.dist-info/METADATA",
+        "sha256": "e620e4e1f9f1c8019619388d4da496eb02119a13f35aaad55f022694a3c81f6c"
+      },
+      {
+        "bytes": 2351,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pyyaml-6.0.3.dist-info/METADATA",
+        "sha256": "03c3b415ed38d09faedc49360e930769b40c58f68585e6de00e2e4916a858d34"
+      },
+      {
+        "bytes": 40468,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/regex-2025.10.23.dist-info/METADATA",
+        "sha256": "2410b65de1fe0677174f26704d5d3ca74f04d9cbdcb7ded0be15318e85160f49"
+      },
+      {
+        "bytes": 4945,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/requests-2.32.5.dist-info/METADATA",
+        "sha256": "65b5a08da81f4915513e760965ff14b7518f65b7bb3efe0dab364bbcc4d40cb0"
+      },
+      {
+        "bytes": 18257,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/rich-14.2.0.dist-info/METADATA",
+        "sha256": "222fe35ac48d4a6c59c49a59ca471bb9f7111bcf88f33897190bac074fd5c35f"
+      },
+      {
+        "bytes": 4081,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/safetensors-0.6.2.dist-info/METADATA",
+        "sha256": "8768f97439fd846ac9bec48a5e4cba450b268142529db527ce4681d29833a736"
+      },
+      {
+        "bytes": 11784,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/scikit_learn-1.7.2.dist-info/METADATA",
+        "sha256": "a301770d816e5ef5e2a262886115f1e6002637324f3bfe73f92378897dea8c63"
+      },
+      {
+        "bytes": 62003,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/scipy-1.16.3.dist-info/METADATA",
+        "sha256": "a54602d0aa61fb25ac030b1d7b0faf0c8cfec508290d4d824198d6b43647ec1b"
+      },
+      {
+        "bytes": 10003,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/sentencepiece-0.2.1.dist-info/METADATA",
+        "sha256": "ce0a2e9c599cd060a7bc3dffb18be5cfc3d5f293533e3ee4e870eaef0a5500fd"
+      },
+      {
+        "bytes": 6572,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/setuptools-80.9.0.dist-info/METADATA",
+        "sha256": "7f890ca8dbc16b63b568c89312ed6a7f9f0a79d0b2b7f3c83bf796ac3d930615"
+      },
+      {
+        "bytes": 7376,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/shtab-1.7.2.dist-info/METADATA",
+        "sha256": "2b79e528ac3607a376a18607c750f3254a6829bdaa96ef6c2170536fc05b9684"
+      },
+      {
+        "bytes": 1658,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/six-1.17.0.dist-info/METADATA",
+        "sha256": "562042078c2752549f6d8a7c86dbc5dd708088a7be6d80672ec7b07100b72468"
+      },
+      {
+        "bytes": 12816,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/sympy-1.14.0.dist-info/METADATA",
+        "sha256": "b756c2fbfd5be05ac5bdb0ebca61f55618f30f633ed92d88a5687429313a7595"
+      },
+      {
+        "bytes": 13843,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/threadpoolctl-3.6.0.dist-info/METADATA",
+        "sha256": "a45df8d07ea1883d772183a501d7d526076aa70dfcfddb276a2cbdc04def5341"
+      },
+      {
+        "bytes": 6728,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/tokenizers-0.21.4.dist-info/METADATA",
+        "sha256": "ef1cc38a5ceceb768e2963515069bc1a6f539408fb0262443765caa8773e7123"
+      },
+      {
+        "bytes": 30748,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/torch-2.8.0.dist-info/METADATA",
+        "sha256": "57ede492698857503164f9ab76185bc0d70aafd1e0078e3ea4f137a56320433c"
+      },
+      {
+        "bytes": 19588,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/torchao-0.14.1.dist-info/METADATA",
+        "sha256": "1e61184c8a5a3201bc15ac0abfeedcb4e0ef94370b6a87b7e8e47a7ddf4e0e7b"
+      },
+      {
+        "bytes": 6134,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/torchvision-0.23.0.dist-info/METADATA",
+        "sha256": "f3e83af19eaec8195f920dd36176654b45701547a63edc139369d560ae6553b8"
+      },
+      {
+        "bytes": 57675,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/tqdm-4.67.1.dist-info/METADATA",
+        "sha256": "688a1632df525a198fec52dcfefb1246d31eacee9c035aacac2d7eaf8d8ff669"
+      },
+      {
+        "bytes": 41969,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/transformers-4.55.4.dist-info/METADATA",
+        "sha256": "08f7874d9982cac2c0f81f176cecbd29f90eb1d2e5ef542b33cf667a17694993"
+      },
+      {
+        "bytes": 1695,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/triton-3.4.0.dist-info/METADATA",
+        "sha256": "8496b57becd6f0fe732bf81570330383f25e2bc572a54bdec45671a23e1db189"
+      },
+      {
+        "bytes": 11638,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/trl-0.22.2.dist-info/METADATA",
+        "sha256": "54b7f7cd3a9e38a6bddf95031d123f563778d38da59c220c3b7a5b86267384f9"
+      },
+      {
+        "bytes": 3311,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/typeguard-4.4.4.dist-info/METADATA",
+        "sha256": "32e303e788e24c12e498b09c40e691e7134d7892d082528e46a551e740750284"
+      },
+      {
+        "bytes": 3259,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/typing_extensions-4.15.0.dist-info/METADATA",
+        "sha256": "c138378fe8f18934ac99de060535c53ec6c13aeed65e94c32641da7ee3192a72"
+      },
+      {
+        "bytes": 12025,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/tyro-0.9.35.dist-info/METADATA",
+        "sha256": "15087f6569834c228e237e53414443cfb48157f8b40400e02bfbe655d1e07648"
+      },
+      {
+        "bytes": 1415,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/tzdata-2025.2.dist-info/METADATA",
+        "sha256": "c2cc876ee200b84d1b8bee22290bc673ae4cf8e8be1a85cd2909a2715215794b"
+      },
+      {
+        "bytes": 54762,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/unsloth-2025.9.7.dist-info/METADATA",
+        "sha256": "b49e35b41e890677853ae7e46995b5e4e6ae25f8afd9dec301d0cef4b03582d2"
+      },
+      {
+        "bytes": 31842,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/unsloth_zoo-2025.9.9.dist-info/METADATA",
+        "sha256": "f5a2bcfc9ac53fd117deb704258cdbc080a8e36c6230cdb311a9eed280329636"
+      },
+      {
+        "bytes": 6461,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/urllib3-2.5.0.dist-info/METADATA",
+        "sha256": "99a6244c866dd1afa59040be84c6566c206670667225c60e791938fe7b93acd7"
+      },
+      {
+        "bytes": 2313,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/wheel-0.45.1.dist-info/METADATA",
+        "sha256": "98acfce07ee6ee3b31272cde21c4d53918936f434f315dfd2af3886211a09a30"
+      },
+      {
+        "bytes": 1050,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/xformers-0.0.32.post2.dist-info/METADATA",
+        "sha256": "3e3e5ee7d6f82408f971360e1cb3df33fd4ffc94783231a17f009f2994c1e889"
+      },
+      {
+        "bytes": 13171,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/xxhash-3.6.0.dist-info/METADATA",
+        "sha256": "9dcdbae3ea685db00dc0691d6f90ec6c1d74349658f97e5a4f55f9bdf183db21"
+      },
+      {
+        "bytes": 75118,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/yarl-1.22.0.dist-info/METADATA",
+        "sha256": "8004c398c5d50b9ded9c4143c0570e775b242b914cf2424d6d8f061640910cb8"
+      },
+      {
+        "bytes": 3563,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/zipp-3.23.0.dist-info/METADATA",
+        "sha256": "bdd67d4d16cf0bf3b893e7d18cd3d2d774adb82f37ed985bc7770c607226b35b"
+      },
+      {
+        "bytes": 14011,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/accelerate-1.11.0.dist-info/RECORD",
+        "sha256": "e3a8549f4f885e5b248364a358aba3191ec9b3a339319910378094150a8c3648"
+      },
+      {
+        "bytes": 1209,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/aiohappyeyeballs-2.6.1.dist-info/RECORD",
+        "sha256": "a3421f20cafa66c611f536a5d6721daada36b8e9607c76d226f2f54431cbf345"
+      },
+      {
+        "bytes": 9831,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/aiohttp-3.13.2.dist-info/RECORD",
+        "sha256": "3c6a89d4b7da7d21e4f245cc421daa6f7de43c62913324be795d24c89a59bf2f"
+      },
+      {
+        "bytes": 703,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/aiosignal-1.4.0.dist-info/RECORD",
+        "sha256": "d3e57df9e057ca8644294c218c0578bb19b43e5b2c6e254c57eba9389128b911"
+      },
+      {
+        "bytes": 3557,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/attrs-25.4.0.dist-info/RECORD",
+        "sha256": "fb4d5dc8cb0ac427b5e8c0a2e2f718d49ae3e10a4060cb85507dabd1c9cf8882"
+      },
+      {
+        "bytes": 11141,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/bitsandbytes-0.48.2.dist-info/RECORD",
+        "sha256": "efee121bd770dd0233f079f5746c1f9d51986e1fbb4aa3399dcde57dd7734bf5"
+      },
+      {
+        "bytes": 1023,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/certifi-2025.10.5.dist-info/RECORD",
+        "sha256": "48633c9e6f9f2f00a2e150997bfa238175bba4069e35915ea3625a349c43b164"
+      },
+      {
+        "bytes": 2788,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/charset_normalizer-3.4.4.dist-info/RECORD",
+        "sha256": "f1abf18cab022ab945e3997c276b584538363a2230024bbd2d3447aba91aa54e"
+      },
+      {
+        "bytes": 2946,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/contourpy-1.3.3.dist-info/RECORD",
+        "sha256": "031a29cf132ef40af92f7cedc416dcbb0697cf901a27e3b7fe1bb62aa4c35ee6"
+      },
+      {
+        "bytes": 2327,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/cut_cross_entropy-25.1.1.dist-info/RECORD",
+        "sha256": "23084dded94a72ccb84b6041bb85d11ab0fd84cb8e9f9c4bf2c82d8cb6bb8b81"
+      },
+      {
+        "bytes": 672,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/cycler-0.12.1.dist-info/RECORD",
+        "sha256": "ebf24fc90f3cc6915a6629cd50fc70b0706e9c530dba9fa65d585c3821c714e4"
+      },
+      {
+        "bytes": 19414,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/datasets-3.6.0.dist-info/RECORD",
+        "sha256": "0e84ea700db8c432f707b4946fb01c392c397e4418355e38502c48725c03124c"
+      },
+      {
+        "bytes": 132759,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/diffusers-0.35.2.dist-info/RECORD",
+        "sha256": "945e3b412b809139dbd85a410d16a8500568c88c282b88e1a0364e4d465c5928"
+      },
+      {
+        "bytes": 6501,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/dill-0.3.8.dist-info/RECORD",
+        "sha256": "12ba0a8de4b65351d58ba2d1357916847666351ec99671ba71b3ada71e490805"
+      },
+      {
+        "bytes": 3241,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/docstring_parser-0.17.0.dist-info/RECORD",
+        "sha256": "bdb671f1812cee237cafacd74d49d937723e9e159db5d61a8222ec708dfeec85"
+      },
+      {
+        "bytes": 1586,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/filelock-3.20.0.dist-info/RECORD",
+        "sha256": "a423f6c4ce6ac9ff5186307202dd475649079aa64fd5aa35fedf2d4cffb9ce42"
+      },
+      {
+        "bytes": 12624,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/flash_attn-2.8.2.dist-info/RECORD",
+        "sha256": "bbc3050809297f4b246314d123b40005bcfb777194bcf162cb4380b58ef5e479"
+      },
+      {
+        "bytes": 51381,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/fonttools-4.60.1.dist-info/RECORD",
+        "sha256": "15e14a13548c668da6a4e6a60997a63a114a75063f119a5b9f3b07463c418ae8"
+      },
+      {
+        "bytes": 993,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/frozenlist-1.8.0.dist-info/RECORD",
+        "sha256": "7c119c0c22bfaca4828625b20041ef69a76f9a5a24d195ea3a04c4bc8e13b9da"
+      },
+      {
+        "bytes": 8029,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/fsspec-2025.3.0.dist-info/RECORD",
+        "sha256": "8ec52ae07d16174b61657955dcdfff444e25a1540dd949279c1f8f3f8ed96feb"
+      },
+      {
+        "bytes": 641,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/hf_transfer-0.1.9.dist-info/RECORD",
+        "sha256": "93992907cdd922dc20d5b6cc2060d306165217048fc89c3e55cca3ebf62cce56"
+      },
+      {
+        "bytes": 596,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/hf_xet-1.2.0.dist-info/RECORD",
+        "sha256": "504041c4c9adf9ba37c588c634473d5fbcdd004d93d056617733e8984c398476"
+      },
+      {
+        "bytes": 28825,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/huggingface_hub-0.36.0.dist-info/RECORD",
+        "sha256": "18097096423ae72fe75555c2dc05d97eece27c3712fc7e490b1f71e8b2b3011f"
+      },
+      {
+        "bytes": 1392,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/idna-3.11.dist-info/RECORD",
+        "sha256": "9063f36dc2620bc31756459e5b811f24b7a06c97cb0f99f0967691a2eeab452f"
+      },
+      {
+        "bytes": 2572,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/importlib_metadata-8.7.0.dist-info/RECORD",
+        "sha256": "4bc25cf4bed090336e42ab4e834edf2286c22a7584a635662c993fcdc21cad00"
+      },
+      {
+        "bytes": 3619,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/jinja2-3.1.6.dist-info/RECORD",
+        "sha256": "1cdb905163b71bcd3528f9d0f46aafd59670242cdbd0ed1a34de3e96dab0cf3b"
+      },
+      {
+        "bytes": 18845,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/joblib-1.5.2.dist-info/RECORD",
+        "sha256": "6391a6eedebcb088a3825f17fd811539b97ed2ddf6522d2a2e14174423f577ac"
+      },
+      {
+        "bytes": 1034,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/kiwisolver-1.4.9.dist-info/RECORD",
+        "sha256": "bf9004dab7ecb07a69c47c6d5b7c6545e10c6e19a91ed1e69ee8a19b5bc78f65"
+      },
+      {
+        "bytes": 10841,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/markdown_it_py-4.0.0.dist-info/RECORD",
+        "sha256": "848ea885e30f232315d76ae3f6da99e517241837180991c2cd8731a1427afa8d"
+      },
+      {
+        "bytes": 1116,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/markupsafe-3.0.3.dist-info/RECORD",
+        "sha256": "f770addd910763da592dbcadd4702e10623c8d343e558af49365c4fde9c261ff"
+      },
+      {
+        "bytes": 73655,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/matplotlib-3.10.6.dist-info/RECORD",
+        "sha256": "a4a71597a5c1b02545a4ead44f08b4348c69f2a4cbbfb7d1f276c4ad40c256f6"
+      },
+      {
+        "bytes": 1152,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/mdurl-0.1.2.dist-info/RECORD",
+        "sha256": "2652eae77e98c35e6b681d60e4f2a8f401530363156d426928a797f3b985916e"
+      },
+      {
+        "bytes": 12686,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/mpmath-1.3.0.dist-info/RECORD",
+        "sha256": "4d067ead8a648e6c16b46974f315c0e08132b51d1612b6a98ba36dcb4c334e53"
+      },
+      {
+        "bytes": 2189,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/msgspec-0.19.0.dist-info/RECORD",
+        "sha256": "29ad37cd326f35a7c591a72fd484918118a18be7d809fd46df2f3e6d752e6d76"
+      },
+      {
+        "bytes": 1202,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/multidict-6.7.0.dist-info/RECORD",
+        "sha256": "468da4a37cb71d988a0154048f4dca42015ef5400d07a7dbface4654f8dbde1d"
+      },
+      {
+        "bytes": 8044,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/multiprocess-0.70.16.dist-info/RECORD",
+        "sha256": "6960f4995a0452c16fcf73fd9869b5efd3bb9f2b3ac8ba4deee8832931d38cd3"
+      },
+      {
+        "bytes": 101321,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/networkx-3.5.dist-info/RECORD",
+        "sha256": "bbe9b0031ee0ce87f8f7d5d66221ad9416b20e3b44092e0d19f188823a2677f3"
+      },
+      {
+        "bytes": 123868,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/numpy-2.2.6.dist-info/RECORD",
+        "sha256": "ea1d07e06ac8c6390394aced38822b97870b2c66767c1012fc9cd0f6f5f7d533"
+      },
+      {
+        "bytes": 1948,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cublas_cu12-12.8.4.1.dist-info/RECORD",
+        "sha256": "6a384f01058d64228ed6dc7fcdad78141a373cbfbfaa4c1bc7a1ce885e402124"
+      },
+      {
+        "bytes": 5518,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cuda_cupti_cu12-12.8.90.dist-info/RECORD",
+        "sha256": "e57e4d0f88f0d99b2e7c821aad5765e263b30f25b2529751f70acf305e72ad15"
+      },
+      {
+        "bytes": 1670,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cuda_nvrtc_cu12-12.8.93.dist-info/RECORD",
+        "sha256": "5c35ba4a77f696ec6649d212144afc680c83cb6c6993b2fd9da2fe73bf93243a"
+      },
+      {
+        "bytes": 11479,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cuda_runtime_cu12-12.8.90.dist-info/RECORD",
+        "sha256": "6507d050124cdd85c17fa25ee2777880b1b356b731e5ccd11d1870b43252e94d"
+      },
+      {
+        "bytes": 2686,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cudnn_cu12-9.10.2.21.dist-info/RECORD",
+        "sha256": "3215220be1461cc6a54ae21f21fcc204d3ac7c6b7038a2ec9553d5726a8c3f39"
+      },
+      {
+        "bytes": 1649,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cufft_cu12-11.3.3.83.dist-info/RECORD",
+        "sha256": "4294de88a554cdcb9a532126b9721006ba49fe410cd05957ba80e30662120db9"
+      },
+      {
+        "bytes": 1392,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cufile_cu12-1.13.1.3.dist-info/RECORD",
+        "sha256": "ea6fb8fa0195650242bcb3acde5735a35d6c1b5d9d0acb45ddd820906652efcf"
+      },
+      {
+        "bytes": 2889,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_curand_cu12-10.3.9.90.dist-info/RECORD",
+        "sha256": "03c680ddd1f51ab97d72e8a51cf28c397ae35f6a3e5069dd6a5d1e77db40ece0"
+      },
+      {
+        "bytes": 1938,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cusolver_cu12-11.7.3.90.dist-info/RECORD",
+        "sha256": "cae37c693aefe8edadde4959520340e943da8f1823a063c5c3bddbeec577c26d"
+      },
+      {
+        "bytes": 1433,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cusparse_cu12-12.5.8.93.dist-info/RECORD",
+        "sha256": "7dca07d40f2441979ff6546bf27d69becc7e7c53f926558909fdab1fc7f71c76"
+      },
+      {
+        "bytes": 754,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_cusparselt_cu12-0.7.1.dist-info/RECORD",
+        "sha256": "2646b45c57b97659cd6ab998cde6728cbb6b196f899408e28e983ccaf6ad6e4e"
+      },
+      {
+        "bytes": 728,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_nccl_cu12-2.27.3.dist-info/RECORD",
+        "sha256": "6cb016f0b33c4c294ba88aed54c12e3c6e17addd14f760120eed78fabf7f9ebe"
+      },
+      {
+        "bytes": 1340,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_nvjitlink_cu12-12.8.93.dist-info/RECORD",
+        "sha256": "0ea50aad8b53aad2ce647e0d96e59a7127c431c01962931320b28abc1527d916"
+      },
+      {
+        "bytes": 3360,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/nvidia_nvtx_cu12-12.8.90.dist-info/RECORD",
+        "sha256": "021845e795be2bb96399fd5ab6fd284065ddcd4828e9ef53e4b2b56395df6ae8"
+      },
+      {
+        "bytes": 2792,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/packaging-25.0.dist-info/RECORD",
+        "sha256": "abbe27ba59a132e7950ac2408466777156f2024a42c8d83ea0248f88fb7faa9c"
+      },
+      {
+        "bytes": 243938,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pandas-2.3.3.dist-info/RECORD",
+        "sha256": "e55c87f10a8c2bef120dda7fc62134124362cc82f1fd7cca577908a7340a9a20"
+      },
+      {
+        "bytes": 23060,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/peft-0.17.1.dist-info/RECORD",
+        "sha256": "ccffa459a972060238e9f4a3d91f96534948a6ee4a7c60926b9f458083ac0b3b"
+      },
+      {
+        "bytes": 16018,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pillow-12.0.0.dist-info/RECORD",
+        "sha256": "b769e5951e7bdea229626472370d0c6bf9e4fcc5e0d3e24fa119eb19af7ff544"
+      },
+      {
+        "bytes": 1379,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/propcache-0.4.1.dist-info/RECORD",
+        "sha256": "86c0047073efbe31c96656e36ae53be2eb8ddd32a5fcf71b0a81860280bd794e"
+      },
+      {
+        "bytes": 8856,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/protobuf-6.33.0.dist-info/RECORD",
+        "sha256": "36f396eb086f97c982f62256a61ac56d639c41caf6167104acdb8391aa955325"
+      },
+      {
+        "bytes": 4500,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/psutil-7.1.2.dist-info/RECORD",
+        "sha256": "d41b4b3fbed1ccc295ea272dd5a372f8470d695d258c562a37fa9343fbdafed2"
+      },
+      {
+        "bytes": 77703,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pyarrow-22.0.0.dist-info/RECORD",
+        "sha256": "2fd0dba07477d9e923f624399503f237309f50132f754621022d617c75353863"
+      },
+      {
+        "bytes": 47425,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pygments-2.19.2.dist-info/RECORD",
+        "sha256": "50bb39fa9286fff7b68f9a53791e9e44a40c3593aab6a7fa361908c93eb76428"
+      },
+      {
+        "bytes": 2208,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pyparsing-3.2.5.dist-info/RECORD",
+        "sha256": "faadb43d7fa10909f471a094ad1df898aa7d2e476efdc5e226155776243633b1"
+      },
+      {
+        "bytes": 3125,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/python_dateutil-2.9.0.post0.dist-info/RECORD",
+        "sha256": "2d07914d24c0e9ff27be7ab8be3924c0b036ccf24d7df1a50db22e10a8263e22"
+      },
+      {
+        "bytes": 53012,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pytz-2025.2.dist-info/RECORD",
+        "sha256": "e1803ffe16c1b40bfd2ccd9e9f9c53f86f3a356699a2e30f30151a5d6c083fb3"
+      },
+      {
+        "bytes": 2706,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/pyyaml-6.0.3.dist-info/RECORD",
+        "sha256": "b0d9ca9f33f9fcf507b73cfa5abab9b157716d4b6ae38190f8eff0fe75f0a04f"
+      },
+      {
+        "bytes": 1120,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/regex-2025.10.23.dist-info/RECORD",
+        "sha256": "2383bcf950418c0aafff1764b16ff6c74ba698aed0c7d90533d74ce470bc8f8d"
+      },
+      {
+        "bytes": 2770,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/requests-2.32.5.dist-info/RECORD",
+        "sha256": "e9751de7908994c3bdce37bbec765178c143a52385e8c0c92963b19a05b9ad7a"
+      },
+      {
+        "bytes": 9652,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/rich-14.2.0.dist-info/RECORD",
+        "sha256": "ce1fca2beb6b893e12d7237de1a9bc5e1109dab8ba03ad302d6b426e6c7fdc24"
+      },
+      {
+        "bytes": 1573,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/safetensors-0.6.2.dist-info/RECORD",
+        "sha256": "1f882a6b5326a9c2a62cac2eb16c0f08cf3ff36470aa0892d229660999499af1"
+      },
+      {
+        "bytes": 139191,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/scikit_learn-1.7.2.dist-info/RECORD",
+        "sha256": "8dc302050504f00bc69292ca835141cfcd9e80a334410c6bfbe9eadb87c4ecbb"
+      },
+      {
+        "bytes": 196766,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/scipy-1.16.3.dist-info/RECORD",
+        "sha256": "c156c4541ad4610c7f8b6c7ba5b871682c2c55258cc7dfa20089683a137cb788"
+      },
+      {
+        "bytes": 1717,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/sentencepiece-0.2.1.dist-info/RECORD",
+        "sha256": "eeed10596e23604d57ad637a4d8a893cb12befc11f78b676bf67c314a6d1b217"
+      },
+      {
+        "bytes": 75341,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/setuptools-80.9.0.dist-info/RECORD",
+        "sha256": "06fb0437dbe2564d7f8eb0f23cf29de81948dc7f5e6584544168d84cc0f078cf"
+      },
+      {
+        "bytes": 1187,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/shtab-1.7.2.dist-info/RECORD",
+        "sha256": "8393eb15c019736b0f15cd9b8e6758ef0022cf90baa1f9290202ccdfaf908631"
+      },
+      {
+        "bytes": 561,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/six-1.17.0.dist-info/RECORD",
+        "sha256": "6eca8f3767a4e15a8317acec57d36e1248342e307b4a20bebbbfa713befaa539"
+      },
+      {
+        "bytes": 245580,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/sympy-1.14.0.dist-info/RECORD",
+        "sha256": "b4cb67ff79501e916d69f4c6312bef84f19441648631f564cdb75eb8b69f481e"
+      },
+      {
+        "bytes": 546,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/threadpoolctl-3.6.0.dist-info/RECORD",
+        "sha256": "831c558199ec0552671891bfd2248e62825c281e719c05e28f44658214a369d7"
+      },
+      {
+        "bytes": 3694,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/tokenizers-0.21.4.dist-info/RECORD",
+        "sha256": "8628e5be162436068d6812366a9338152133aeb178cda03dac4ea10e95a65468"
+      },
+      {
+        "bytes": 1359651,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/torch-2.8.0.dist-info/RECORD",
+        "sha256": "99736336c647f068cdae08473d0c8187577ca40a096ba362ad227f77e6561785"
+      },
+      {
+        "bytes": 70978,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/torchao-0.14.1.dist-info/RECORD",
+        "sha256": "4384d0525a4ec2b2a7d85058a34891e08601eaf41265862a0bbffc615660f292"
+      },
+      {
+        "bytes": 30759,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/torchvision-0.23.0.dist-info/RECORD",
+        "sha256": "f5520db3863d4426dd9d3dbfeda1dbfc9dfd3e3418f09e6609bb01522c8f52be"
+      },
+      {
+        "bytes": 4649,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/tqdm-4.67.1.dist-info/RECORD",
+        "sha256": "49f7931f2ddef271b34391c9f1df22d9bb7a37c6633e3ba4fbd6705b20484488"
+      },
+      {
+        "bytes": 389751,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/transformers-4.55.4.dist-info/RECORD",
+        "sha256": "fa51b04adceb9eaea6bb3286a872069e5e093a31cebb899c20a8ef084fe6c78c"
+      },
+      {
+        "bytes": 43835,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/triton-3.4.0.dist-info/RECORD",
+        "sha256": "4c9f39a309403ff7923f1c22a9e4588f8830208675f231f3917cc0bf431b3de1"
+      },
+      {
+        "bytes": 21031,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/trl-0.22.2.dist-info/RECORD",
+        "sha256": "ff14d22f407eb2b4dae6862463d65047a010a5736d42153b49cc5dad67f1798b"
+      },
+      {
+        "bytes": 2262,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/typeguard-4.4.4.dist-info/RECORD",
+        "sha256": "2719fcbf8f4a4c1f1123bbc0e5a3ae77caeede7ff61efd1688c01ca11ec6f427"
+      },
+      {
+        "bytes": 580,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/typing_extensions-4.15.0.dist-info/RECORD",
+        "sha256": "d09d67683e60ad06d78f768f653658c1e2834fcaf6f2ac69f294d7da9a358c28"
+      },
+      {
+        "bytes": 5876,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/tyro-0.9.35.dist-info/RECORD",
+        "sha256": "a90c71c73a65260ec26c77c57a116f25e562cd7308f40bb3c456c07a120f6655"
+      },
+      {
+        "bytes": 56828,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/tzdata-2025.2.dist-info/RECORD",
+        "sha256": "80f66d918b1ef485929444e333827c8bef0e7f11d75f8bf3f8bad7c33c2e9517"
+      },
+      {
+        "bytes": 11371,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/unsloth-2025.9.7.dist-info/RECORD",
+        "sha256": "6c70c5e61ecdefb8154ac1cc2f1165bf0d1e58343780d517f24e91f5dc564231"
+      },
+      {
+        "bytes": 6546,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/unsloth_zoo-2025.9.9.dist-info/RECORD",
+        "sha256": "6161526542632f8c53e5d671e27cdd581f3da5f3ad7735af0bf2a4c366d2566b"
+      },
+      {
+        "bytes": 5527,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/urllib3-2.5.0.dist-info/RECORD",
+        "sha256": "a1641ee75450ea924c3cfe8eeaa91a0503eb02797e9bc3d30153828e2c6208e9"
+      },
+      {
+        "bytes": 4881,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/wheel-0.45.1.dist-info/RECORD",
+        "sha256": "0f9c90011cc9c8e578d1063c8be559b75aa9f667145007f0802e9f3bde94b513"
+      },
+      {
+        "bytes": 27093,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/xformers-0.0.32.post2.dist-info/RECORD",
+        "sha256": "2241418e7746d8b4b18c591cf88869b0023e014013b10764cb38b9ed7b517c64"
+      },
+      {
+        "bytes": 980,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/xxhash-3.6.0.dist-info/RECORD",
+        "sha256": "f2c9d8988546787e4d9371c17ac676c2109333018cbe19c4d115f7315cb22273"
+      },
+      {
+        "bytes": 1762,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/yarl-1.22.0.dist-info/RECORD",
+        "sha256": "aa6e355866383592dc7caf88daed4dfecc16f233366ceef7379098900524fe29"
+      },
+      {
+        "bytes": 1340,
+        "path": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/zipp-3.23.0.dist-info/RECORD",
+        "sha256": "897730fb8729df8292655e293f015914b4ba372f01a7761b259d9fc7c1c57a88"
+      }
+    ],
+    "root": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch"
+  },
+  "elapsed_seconds": 6367.799882027,
+  "errors": [],
+  "exitcodes": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "fallback_outputs": 1,
+  "input": {
+    "path": "/kaggle/input/competitions/arc-prize-2026-arc-agi-2/arc-agi_test_challenges.json",
+    "sha256": "232264c58f825ee77327dcfc9f4e5cb2f83b8d997eb69032be1bf2205bbe1a83"
+  },
+  "mode": "real",
+  "model": {
+    "directory": "/kaggle/input/models/sorokin/qwen3_4b_grids15_sft139/transformers/bfloat16/1",
+    "files": [
+      {
+        "bytes": 1532,
+        "path": "/kaggle/input/models/sorokin/qwen3_4b_grids15_sft139/transformers/bfloat16/1/config.json",
+        "sha256": "932e9430395ba3eea4087cba1769241bc7d0dc8d574846862d6983659456a2d0"
+      },
+      {
+        "bytes": 4996836472,
+        "path": "/kaggle/input/models/sorokin/qwen3_4b_grids15_sft139/transformers/bfloat16/1/model-00001-of-00002.safetensors",
+        "sha256": "379de219f74a1402a67d26fe7dcacdacadbf686947e08e41117dd9c884ee4529"
+      },
+      {
+        "bytes": 2270397024,
+        "path": "/kaggle/input/models/sorokin/qwen3_4b_grids15_sft139/transformers/bfloat16/1/model-00002-of-00002.safetensors",
+        "sha256": "3b8470b83355ccbc527afcb7a77664bd679e63899a80e79169c016658e6b92e0"
+      },
+      {
+        "bytes": 1731,
+        "path": "/kaggle/input/models/sorokin/qwen3_4b_grids15_sft139/transformers/bfloat16/1/tokenizer.json",
+        "sha256": "af6b9e855f9db3192bd9152607708ebd7700b40f9fc5f792a26af70150a96cd5"
+      },
+      {
+        "bytes": 988,
+        "path": "/kaggle/input/models/sorokin/qwen3_4b_grids15_sft139/transformers/bfloat16/1/tokenizer_config.json",
+        "sha256": "e1912aeba4050616cbfe01b34df3f3df2818207eda0056f6eb87c2336936ea90"
+      }
+    ]
+  },
+  "model_outputs": 258,
+  "peak_device_mb": 17101,
+  "preflight": {
+    "events": [
+      {
+        "cuda": "12.8",
+        "dependency_origins": {
+          "flash_attn": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/flash_attn/__init__.py",
+          "unsloth": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/unsloth/__init__.py",
+          "unsloth_zoo": "/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/unsloth_zoo/__init__.py"
+        },
+        "kind": "preflight",
+        "load_peak_device_mb": 8966,
+        "load_seconds": 13.056494090000001,
+        "model_loaded": true,
+        "status": "complete",
+        "tokenizer": {
+          "encoded_prefixes": {
+            "assistant": [
+              14,
+              12,
+              10
+            ],
+            "user": [
+              14,
+              11,
+              10
+            ]
+          },
+          "special_ids": {
+            "ASSISTANT_TOKEN_ID": 12,
+            "EOS_ID": 15,
+            "IM_START_TOKEN_ID": 14,
+            "PAD_ID": 13,
+            "USER_TOKEN_ID": 11
+          },
+          "vocab": {
+            "0": 0,
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "<|endoftext|>": 13,
+            "<|im_end|>": 15,
+            "<|im_start|>": 14,
+            "assistant": 12,
+            "user": 11,
+            "\u010a": 10
+          },
+          "vocab_size": 16
+        },
+        "torch": "2.8.0+cu128",
+        "versions": {
+          "flash_attn": "2.8.2",
+          "numpy": "2.2.6",
+          "torch": "2.8.0",
+          "unsloth": "2025.9.7",
+          "unsloth_zoo": "2025.9.9"
+        }
+      }
+    ],
+    "exitcodes": [
+      0
+    ],
+    "hard_timeout": false
+  },
+  "processed_tasks": 240,
+  "runtime": {
+    "executable": "/usr/bin/python3",
+    "platform": "linux",
+    "python": "3.11.13 (main, Jun  4 2025, 08:57:29) [GCC 11.4.0]"
+  },
+  "selected_arm": "inference_only",
+  "selected_task_ids": [
+    "00576224",
+    "007bbfb7",
+    "009d5c81",
+    "00d62c1b",
+    "00dbd492",
+    "017c7c7b",
+    "025d127b",
+    "03560426",
+    "045e512c",
+    "0520fde7",
+    "05269061",
+    "05a7bcf2",
+    "05f2a901",
+    "0607ce86",
+    "0692e18c",
+    "06df4c85",
+    "070dd51e",
+    "08ed6ac7",
+    "09629e4f",
+    "0962bcdd",
+    "09c534e7",
+    "0a1d4ef5",
+    "0a2355a6",
+    "0a938d79",
+    "0b148d64",
+    "0b17323b",
+    "0bb8deee",
+    "0becf7df",
+    "0c786b71",
+    "0c9aba6e",
+    "0ca9ddb6",
+    "0d3d703e",
+    "0d87d2a6",
+    "0e206a2e",
+    "0e671a1a",
+    "0f63c0b9",
+    "103eff5b",
+    "10fcaaa3",
+    "11852cab",
+    "1190bc91",
+    "1190e5a7",
+    "11dc524f",
+    "11e1fe23",
+    "12422b43",
+    "12997ef3",
+    "12eac192",
+    "13713586",
+    "137eaa0f",
+    "137f0df0",
+    "13f06aa5",
+    "140c817e",
+    "14754a24",
+    "1478ab18",
+    "14b8e18c",
+    "150deff5",
+    "15113be4",
+    "15660dd6",
+    "15663ba9",
+    "15696249",
+    "17829a00",
+    "178fcbfb",
+    "17b80ad2",
+    "17b866bd",
+    "17cae0c1",
+    "18286ef8",
+    "182e5d0f",
+    "18419cfa",
+    "18447a8d",
+    "184a9768",
+    "195ba7dc",
+    "1990f7a8",
+    "19bb5feb",
+    "1a07d186",
+    "1a244afd",
+    "1a2e2828",
+    "1a6449f1",
+    "1acc24af",
+    "1b2d62fb",
+    "1b59e163",
+    "1b60fb0c",
+    "1b8318e3",
+    "1be83260",
+    "1bfc4729",
+    "1c02dbbe",
+    "1c0d0a4b",
+    "1c56ad9f",
+    "1c786137",
+    "1caeab9d",
+    "1cf80156",
+    "1d0a4b61",
+    "1d398264",
+    "1d61978c",
+    "1da012fc",
+    "1e0a9b12",
+    "1e32b0e9",
+    "1e5d6875",
+    "1e81d6f9",
+    "1efba499",
+    "1f0c79e5",
+    "1f642eb9",
+    "1f85a75f",
+    "1f876c06",
+    "1fad071e",
+    "2013d3e2",
+    "2037f2c7",
+    "2072aba6",
+    "20818e16",
+    "20981f0e",
+    "20fb2937",
+    "212895b5",
+    "21f83797",
+    "2204b7a8",
+    "22168020",
+    "22208ba4",
+    "22233c11",
+    "22425bda",
+    "22806e14",
+    "2281f1f4",
+    "228f6490",
+    "22a4bbc2",
+    "22eb0ac0",
+    "230f2e48",
+    "234bbc79",
+    "23581191",
+    "239be575",
+    "23b5c85d",
+    "25094a63",
+    "252143c9",
+    "253bf280",
+    "2546ccf6",
+    "256b0a75",
+    "25c199f5",
+    "25d487eb",
+    "25d8a9c8",
+    "25e02866",
+    "25ff71a9",
+    "2601afb7",
+    "264363fd",
+    "2685904e",
+    "2697da3f",
+    "272f95fa",
+    "2753e76c",
+    "278e5215",
+    "27a28665",
+    "27a77e38",
+    "27f8ce4f",
+    "281123b4",
+    "28bf18c6",
+    "28e73c20",
+    "292dd178",
+    "29623171",
+    "29700607",
+    "29c11459",
+    "2a28add5",
+    "2a5f8217",
+    "2b01abd0",
+    "2b9ef948",
+    "2bcee788",
+    "2bee17df",
+    "2c0b0aff",
+    "2c608aff",
+    "2c737e39",
+    "2ccd9fef",
+    "2dc579da",
+    "2dd70a9a",
+    "2de01db2",
+    "2dee498d",
+    "2e65ae53",
+    "2f0c5170",
+    "2f767503",
+    "2faf500b",
+    "305b1341",
+    "30f42897",
+    "310f3251",
+    "3194b014",
+    "319f2597",
+    "31aa019c",
+    "31adaf00",
+    "31d5ba1a",
+    "320afe60",
+    "321b1fc6",
+    "32597951",
+    "32e9702f",
+    "33067df9",
+    "332202d5",
+    "332efdb3",
+    "3345333e",
+    "337b420f",
+    "3391f8c0",
+    "33b52de3",
+    "3428a4f5",
+    "342ae2ed",
+    "342dd610",
+    "3490cc26",
+    "34b99a2b",
+    "34cfa167",
+    "351d6448",
+    "358ba94e",
+    "3618c87e",
+    "363442ee",
+    "36d67576",
+    "36fdfd69",
+    "37ce87bb",
+    "37d3e8b2",
+    "3906de3d",
+    "396d80d7",
+    "3979b1a8",
+    "39a8645d",
+    "39e1d7f9",
+    "3a301edc",
+    "3aa6fb7a",
+    "3ac3eb23",
+    "3ad05f52",
+    "3af2c5a8",
+    "3b4c2228",
+    "3bd292e8",
+    "3bd67248",
+    "3bdb4ada",
+    "3befdf3e",
+    "3c9b0459",
+    "3cd86f4f",
+    "3d31c5b3",
+    "3d588dc9",
+    "3d6c6e23",
+    "3de23699",
+    "3e980e27",
+    "3eda0437",
+    "3ee1011a",
+    "3f23242b",
+    "3f7978a0",
+    "4093f84a",
+    "40f6cd08",
+    "412b6263",
+    "414297c0",
+    "41ace6b5",
+    "41e4d17e",
+    "423a55dc",
+    "4258a5f9",
+    "4290ef0e",
+    "42918530"
+  ],
+  "source": {
+    "notebook_sha256": "463829abfea83fb95d7336dc6a4ffb8a7f652e3bcdb3947e840cf502bc7b70e4",
+    "symbolic_sha256": "bbbd6ca85cc3a763b53b691e9068cc40b10049b410430afe54daa011e89ff1c2",
+    "vendored_sha256": {
+      "arc_decoder.py": "965cfd910777d9bbec9681c6c15c5e2ea3924569734248046f5e58f16cb28222",
+      "arc_loader.py": "d01cd56167e534ae156706ef62ab11662fc7b403964614a7a55131940bde970c",
+      "arc_solver.py": "1387c5b0b188dcc8570659dd5905ec2e824e5e0dfd7b20d8be9c2e13d0f12962",
+      "starter.py": "271a09eaa827a454d6c0afc6b94729c6e51036197b5942a3a6718f3dfab01a2b"
+    }
+  },
+  "status": "incomplete",
+  "total_outputs": 259,
+  "total_tasks": 240
+}

@@ -1,0 +1,12 @@
+{
+  "kernel_ref": "kevinmhk/arc-gpu3-ttt-evaluation/3",
+  "original_ref": "kevinmhk/arc-gpu3-ttt-evaluation/2",
+  "source_sha256": "f44b8b763684687c55347b71b6683fad72b879eabded6f37c7fe4b2f0dfa7399",
+  "recorded_epoch": 1793585914.6355045,
+  "original_deadline_epoch": 1793592414.5235379,
+  "hard_seconds": 5400,
+  "graceful_seconds": 5100,
+  "api_timeout_seconds": 5460,
+  "metadata_source_readback_verified": true,
+  "change": "Correct validator namespace only; prior run stopped before model load; no TTT/model/decoder/selection changes."
+}

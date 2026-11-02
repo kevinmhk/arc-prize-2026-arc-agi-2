@@ -1,0 +1,11 @@
+{
+  "kernel_ref": "kevinmhk/arc-gpu3-ttt-evaluation/2",
+  "notebook_sha256": "f68c33af940bf40eedf4616ec8639b06a2a0776a748084d67edd5e3f6f5e5b4d",
+  "launch_recorded_epoch": 1793585214.5235379,
+  "hard_seconds": 7200,
+  "graceful_seconds": 5400,
+  "baseline_ref": "kevinmhk/arc-gpu2-public-evaluation/3",
+  "promotion_rule": "Select TTT only if strictly more correct outputs on full frozen22 and clean training/execution with practical runtime/memory; otherwise retain inference-only. No retuning.",
+  "metadata_and_code_readback_verified": true,
+  "competition_submission": false
+}

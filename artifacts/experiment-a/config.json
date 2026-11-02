@@ -1,0 +1,38 @@
+{
+  "experiment": "A",
+  "fallback": "trusted symbolic solve_task; unsupported tasks retain both symbolic attempts",
+  "feature_count": 126,
+  "feature_schema_sha256": "755fed72b969b3bc9e885abb84c28e0f4ea6ad53f5e40b916e8bf981d9f7ea9c",
+  "inference_contract": {
+    "answer_based_selection": false,
+    "fit_predict_receives_solutions": false,
+    "solutions_used_only_for_scoring_after_fit": true
+  },
+  "models": {
+    "forest": {
+      "class": "RandomForestClassifier",
+      "max_depth": 12,
+      "n_estimators": 32,
+      "n_jobs": 1
+    },
+    "tree": {
+      "class": "DecisionTreeClassifier",
+      "max_depth": 12
+    }
+  },
+  "random_state": 17,
+  "schema_version": 1,
+  "selected_ids_sha256": "b4c21035624615f8eb7e454f8b7c47ab1c14d892880b61403a310a5b4c38b2da",
+  "source": {
+    "diagnostic_script_sha256": "c6535a8ff52f2a4eea25ea0869fb4232a9fe027feaa449b7cf0d69d73e34d797",
+    "experiment_script_sha256": "09a09366a8bfb4d50b6180806c7036da984e27812503705b71c70e60a88f3a6a",
+    "notebook_hash_verified": true,
+    "notebook_path": "notebooks/submission.ipynb",
+    "notebook_sha256": "6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028",
+    "requirements_sha256": "45629240e37147627b421820973bbf02c4a1e3a8eb3a0ddbd0fec23a17a36f06",
+    "training_challenges_sha256": "779eaba89790ebad9af02514a7efc0aefaf2cf8236f046a31bbf8b9ec48f20f5",
+    "training_solutions_sha256": "9f07a38bd25af5e83aa5bf85c5cb1a1fefdb30f6a755256fa65429e697ca97f9",
+    "verification_metadata_available": true,
+    "verification_notebook_sha256": "6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028"
+  }
+}

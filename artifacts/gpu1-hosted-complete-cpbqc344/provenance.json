@@ -1,0 +1,21 @@
+{
+  "source": "user-uploaded Kaggle run outputs",
+  "hosted_notebook_source_provided": false,
+  "files_sha256": {
+    "summary.json": "647dace7977cdcf103cc9bd4a07a3899a94366c6268861ea481d847998780fbd",
+    "predictions.json": "0c4a3097b6d6b1208352ea6f895186fa594cd9456e7cd1ac370cf804737e41d3",
+    "manifest.json": "404c46739acd8bbc05dc527e77838888e2c9f061e3a00e24ecb87a0b1b14f46a",
+    "events.jsonl": "8ecc6b5ee5069cb77c673e65cc20bfe2068fa8b861e0a32fdcc4b9ac8a0a8f69"
+  },
+  "verification": {
+    "status": "complete",
+    "pilot_tasks": 8,
+    "outputs": 9,
+    "inference_only_correct": 9,
+    "ttt_correct": 9,
+    "first_attempt_correct_each_arm": 9,
+    "fallback_outputs": 0,
+    "error_events": 0,
+    "data_hashes_match_manifest": true
+  }
+}

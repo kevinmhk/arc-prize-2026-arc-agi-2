@@ -1,0 +1,60 @@
+{
+  "baseline_note": "baseline is the hash-verified pre-measured Phase 1C artifact; A2 does not fit or recompute it",
+  "baseline_source": {
+    "kind": "verified_artifact",
+    "path": "artifacts/phase1c/training.json",
+    "sha256": "0d5cb7efd2dd56294e65762bdbcf94b1a0e3166d206501c6815db41780331302",
+    "verification_run": "training"
+  },
+  "experiment": "A2",
+  "inference_contract": {
+    "solutions_passed_to_fit": false,
+    "solutions_used_only_after_full_prediction_for_reporting": true,
+    "test_answers_used_for_selection": false
+  },
+  "models": {
+    "feature_schema_sha256": "755fed72b969b3bc9e885abb84c28e0f4ea6ad53f5e40b916e8bf981d9f7ea9c",
+    "inherited_from": "scripts/experiment_a.py",
+    "random_state": 17
+  },
+  "policy": {
+    "candidate_sources": [
+      "sym1",
+      "sym2",
+      "tree",
+      "forest"
+    ],
+    "fallback": "symbolic attempt order, then duplicate first grid",
+    "fold_score": "exact held-grid match; invalid or unavailable is no-match",
+    "holdout": "one complete demonstration per fold; held input only is test input",
+    "selection": "descending fold match rate, then fixed tie order; distinct grids",
+    "tie_order": [
+      "sym1",
+      "sym2",
+      "tree",
+      "forest"
+    ]
+  },
+  "runtime": {
+    "numpy": "2.3.4",
+    "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+    "python": "3.14.9 (main, Oct 21 2026, 06:02:15) [GCC 13.3.0]",
+    "sklearn": "1.7.2"
+  },
+  "sample_size": 128,
+  "schema_version": 1,
+  "selected_ids_sha256": "8d57d62835b0d996778fb38bbd4de876173676f751253701d6db46112265ba61",
+  "source": {
+    "diagnostic_script_sha256": "c6535a8ff52f2a4eea25ea0869fb4232a9fe027feaa449b7cf0d69d73e34d797",
+    "experiment_a2_sha256": "adc64e211baa38a9a1985a2f3eec23b2dec8ef2748578224d02589364e30ca87",
+    "experiment_a_sha256": "dd950efcc03e6d69fc05634fcc850daa29c2d5a394b1f6a8c2fa29d5468db254",
+    "notebook_hash_verified": true,
+    "notebook_path": "notebooks/submission.ipynb",
+    "notebook_sha256": "6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028",
+    "requirements_sha256": "45629240e37147627b421820973bbf02c4a1e3a8eb3a0ddbd0fec23a17a36f06",
+    "training_challenges_sha256": "779eaba89790ebad9af02514a7efc0aefaf2cf8236f046a31bbf8b9ec48f20f5",
+    "training_solutions_sha256": "9f07a38bd25af5e83aa5bf85c5cb1a1fefdb30f6a755256fa65429e697ca97f9",
+    "verification_metadata_available": true,
+    "verification_notebook_sha256": "6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028"
+  }
+}

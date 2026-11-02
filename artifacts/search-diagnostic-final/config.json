@@ -1,0 +1,41 @@
+{
+  "analysis_timeout_seconds": 5.0,
+  "conditions": [
+    {
+      "generator": "production",
+      "max_depth": 2,
+      "max_programs": 1024,
+      "name": "baseline"
+    },
+    {
+      "generator": "diagnostic_prefix_preserving",
+      "max_depth": 2,
+      "max_programs": 4096,
+      "name": "expanded_depth2"
+    },
+    {
+      "generator": "diagnostic_prefix_preserving",
+      "max_depth": 3,
+      "max_programs": 8192,
+      "name": "deeper_depth3"
+    }
+  ],
+  "inference_contract": {
+    "oracle_candidate_coverage_is_post_inference_only": true,
+    "runtime": "trusted notebook definition cell",
+    "training_solutions_passed_to_inference": false
+  },
+  "sample_size": 32,
+  "schema_version": 2,
+  "source": {
+    "diagnostic_script_sha256": "c6535a8ff52f2a4eea25ea0869fb4232a9fe027feaa449b7cf0d69d73e34d797",
+    "notebook_hash_verified": true,
+    "notebook_path": "notebooks/submission.ipynb",
+    "notebook_sha256": "6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028",
+    "training_challenges_sha256": "779eaba89790ebad9af02514a7efc0aefaf2cf8236f046a31bbf8b9ec48f20f5",
+    "training_solutions_sha256": "9f07a38bd25af5e83aa5bf85c5cb1a1fefdb30f6a755256fa65429e697ca97f9",
+    "verification_metadata_available": true,
+    "verification_notebook_sha256": "6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028"
+  },
+  "task_timeout_seconds": 20.0
+}

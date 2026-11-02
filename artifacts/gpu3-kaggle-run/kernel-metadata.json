@@ -1,0 +1,24 @@
+{
+  "id": "kevinmhk/arc-gpu3-ttt-evaluation",
+  "title": "ARC GPU3 TTT Evaluation",
+  "code_file": "gpu3_ttt_evaluation.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "machine_shape": "NvidiaL4",
+  "docker_image_pinning_type": "original",
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:320043e14c68293f1c946585b9257123385205a58af4b94b17d31868cae4e868",
+  "dataset_sources": [],
+  "kernel_sources": [
+    "sorokin/pip-install-unsloth-flash-patch"
+  ],
+  "competition_sources": [
+    "arc-prize-2026-arc-agi-2"
+  ],
+  "model_sources": [
+    "sorokin/qwen3_4b_grids15_sft139/Transformers/bfloat16/1"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "kernel_ref": "kevinmhk/arc-gpu3-ttt-evaluation/3",
+  "status": "incomplete",
+  "scores": {
+    "inference_only": {
+      "correct_outputs": 6,
+      "first_correct": 5,
+      "solved_tasks": 5,
+      "total_outputs": 22,
+      "total_tasks": 16,
+      "correct_ids": [
+        "31f7f899:0",
+        "4c3d4a41:0",
+        "4c3d4a41:1",
+        "6e453dd6:0",
+        "1818057f:0",
+        "a251c730:0"
+      ],
+      "first_ids": [
+        "31f7f899:0",
+        "4c3d4a41:0",
+        "4c3d4a41:1",
+        "6e453dd6:0",
+        "1818057f:0"
+      ]
+    },
+    "ttt": {
+      "correct_outputs": 9,
+      "first_correct": 8,
+      "solved_tasks": 6,
+      "total_outputs": 22,
+      "total_tasks": 16,
+      "correct_ids": [
+        "4c3d4a41:0",
+        "4c3d4a41:1",
+        "53fb4810:0",
+        "d35bdbdc:2",
+        "6e453dd6:0",
+        "1818057f:0",
+        "80a900e0:0",
+        "65b59efc:0",
+        "a251c730:0"
+      ],
+      "first_ids": [
+        "4c3d4a41:0",
+        "53fb4810:0",
+        "d35bdbdc:2",
+        "6e453dd6:0",
+        "1818057f:0",
+        "80a900e0:0",
+        "65b59efc:0",
+        "a251c730:0"
+      ]
+    }
+  },
+  "added_outputs": 4,
+  "lost_outputs": 1,
+  "added_ids": [
+    "53fb4810:0",
+    "65b59efc:0",
+    "80a900e0:0",
+    "d35bdbdc:2"
+  ],
+  "lost_ids": [
+    "31f7f899:0"
+  ],
+  "model_outputs": 21,
+  "fallback_outputs": 1,
+  "trained_full_epoch_tasks": 16,
+  "error_events": [],
+  "elapsed_seconds": 2874.0061661550003,
+  "summed_training_seconds": 2673.1759405109997,
+  "summed_inference_seconds": 4187.622501829999,
+  "reported_peak_GiB": 14.5966796875,
+  "naive_full240_seconds": 43110.092492325006,
+  "projection_caveat": "Simple sample scaling including fixed overhead; not full-run timing proof.",
+  "selected_policy": "inference_only",
+  "validation": "actual data hashes, all22 grids/counts, cached fallback, raw arm events and paired score checks passed"
+}
