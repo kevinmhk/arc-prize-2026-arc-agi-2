@@ -1,0 +1,23 @@
+{
+  "kernel_ref": "kevinmhk/arc-gpu-submission-smoke/2",
+  "status": "complete",
+  "tasks": 240,
+  "outputs": 259,
+  "model_task_ids": [
+    "0d3d703e",
+    "25d8a9c8"
+  ],
+  "model_outputs": 2,
+  "fallback_outputs": 257,
+  "elapsed_seconds": 487.9563905200001,
+  "peak_GiB": 9.205078125,
+  "errors": [],
+  "claims": {
+    "accuracy_measured": false,
+    "gpu_measured": true,
+    "model_loaded": true
+  },
+  "validation": "full240/259 schema, actual model events, unchanged symbolic fallback and input hash passed",
+  "full_gpu_run": false,
+  "competition_submission": false
+}

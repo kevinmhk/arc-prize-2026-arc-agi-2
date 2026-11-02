@@ -1,0 +1,61 @@
+{
+  "notebook_sha256": "6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028",
+  "runs": [
+    {
+      "name": "training",
+      "mode": "training",
+      "solver": "symbolic",
+      "cwd": "/home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2",
+      "wall_seconds": 235.02332476200536,
+      "json_sha256": "0d5cb7efd2dd56294e65762bdbcf94b1a0e3166d206501c6815db41780331302",
+      "log": "kernel: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/.venv/bin/python\nmode: training\ndata directory: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/data\ntasks: 1000; test outputs: 1076\nvalidated JSON readback: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/artifacts/phase1c/training.json\ntraining metrics: {\"candidate_coverage\": 0.028, \"correct_outputs\": 28, \"exact_fit_tasks\": 28, \"max_task_runtime_seconds\": 3.518807101994753, \"official_score\": 0.026022304832713755, \"output_accuracy\": 0.026022304832713755, \"representative_failures\": [{\"category\": \"content_or_placement\", \"task_id\": \"00576224\", \"test_index\": 0, \"train_demo_coverage\": 0.0}, {\"category\": \"content_or_placement\", \"task_id\": \"007bbfb7\", \"test_index\": 0, \"train_demo_coverage\": 0.0}, {\"category\": \"content_or_placement\", \"task_id\": \"009d5c81\", \"test_index\": 0, \"train_demo_coverage\": 0.0}, {\"category\": \"content_or_placement\", \"task_id\": \"00d62c1b\", \"test_index\": 0, \"train_demo_coverage\": 0.0}, {\"category\": \"content_or_placement\", \"task_id\": \"00dbd492\", \"test_index\": 0, \"train_demo_coverage\": 0.0}], \"solved_tasks\": 26, \"split_metrics\": {\"heldout\": {\"correct_outputs\": 4, \"official_score\": 0.017316017316017316, \"output_accuracy\": 0.017316017316017316, \"solved_tasks\": 4, \"task_averaged_pass_at_2\": 0.018518518518518517, \"task_solve_rate\": 0.018518518518518517, \"total_outputs\": 231, \"total_tasks\": 216}, \"iteration\": {\"correct_outputs\": 24, \"official_score\": 0.028402366863905324, \"output_accuracy\": 0.028402366863905324, \"solved_tasks\": 22, \"task_averaged_pass_at_2\": 0.029124149659863943, \"task_solve_rate\": 0.02806122448979592, \"total_outputs\": 845, \"total_tasks\": 784}}, \"task_averaged_pass_at_2\": 0.02683333333333333, \"task_solve_rate\": 0.026, \"total_outputs\": 1076, \"total_task_runtime_seconds\": 233.38151889876463, \"total_tasks\": 1000, \"train_demo_coverage\": 0.045771428571428574, \"wall_clock_seconds\": 233.59615771402605}\nsolver mode: symbolic\nelapsed seconds: 234.352119\n"
+    },
+    {
+      "name": "evaluation",
+      "mode": "evaluation",
+      "solver": "symbolic",
+      "cwd": "/home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2",
+      "wall_seconds": 50.61103314207867,
+      "json_sha256": "89c2dc75f5ce9fc1ad5da46f0fb31569ea21a7e1a111d9984046f8ff89375d9f",
+      "log": "kernel: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/.venv/bin/python\nmode: evaluation\ndata directory: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/data\ntasks: 120; test outputs: 172\nvalidated JSON readback: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/artifacts/phase1c/evaluation.json\noutput accuracy: 0/172 = 0.000000\ntask solve rate: 0/120 = 0.000000\ntask-averaged pass@2: 0.000000\nofficial score (output-weighted): 0.000000\nsolver mode: symbolic\nelapsed seconds: 49.789325\n"
+    },
+    {
+      "name": "submission-root",
+      "mode": "submission",
+      "solver": "symbolic",
+      "cwd": "/home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2",
+      "wall_seconds": 59.37672815378755,
+      "json_sha256": "80f59ac257e5e2f78e84a3cea9eb0bf5ed796674ecf41c0824ede5c1a15130e7",
+      "log": "kernel: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/.venv/bin/python\nmode: submission\ndata directory: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/data\ntasks: 240; test outputs: 259\nvalidated JSON readback: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/artifacts/phase1c/submission-root.json\nsolutions loaded: no\nsolver mode: symbolic\nelapsed seconds: 58.534660\n"
+    },
+    {
+      "name": "submission-notebooks",
+      "mode": "submission",
+      "solver": "symbolic",
+      "cwd": "/home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/notebooks",
+      "wall_seconds": 58.97239362890832,
+      "json_sha256": "80f59ac257e5e2f78e84a3cea9eb0bf5ed796674ecf41c0824ede5c1a15130e7",
+      "log": "kernel: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/.venv/bin/python\nmode: submission\ndata directory: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/data\ntasks: 240; test outputs: 259\nvalidated JSON readback: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/artifacts/phase1c/submission-notebooks.json\nsolutions loaded: no\nsolver mode: symbolic\nelapsed seconds: 58.351615\n"
+    },
+    {
+      "name": "submission-repeat",
+      "mode": "submission",
+      "solver": "symbolic",
+      "cwd": "/home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2",
+      "wall_seconds": 59.16905884700827,
+      "json_sha256": "80f59ac257e5e2f78e84a3cea9eb0bf5ed796674ecf41c0824ede5c1a15130e7",
+      "log": "kernel: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/.venv/bin/python\nmode: submission\ndata directory: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/data\ntasks: 240; test outputs: 259\nvalidated JSON readback: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/artifacts/phase1c/submission-repeat.json\nsolutions loaded: no\nsolver mode: symbolic\nelapsed seconds: 58.365901\n"
+    },
+    {
+      "name": "identity",
+      "mode": "submission",
+      "solver": "identity",
+      "cwd": "/home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2",
+      "wall_seconds": 0.8413490559905767,
+      "json_sha256": "c8efe3937f112d74559016f49cbf9340347f8689ad7520b363f3296b3538eb82",
+      "log": "kernel: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/.venv/bin/python\nmode: submission\ndata directory: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/data\ntasks: 240; test outputs: 259\nvalidated JSON readback: /home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/artifacts/phase1c/identity.json\nsolutions loaded: no\nsolver mode: identity\nelapsed seconds: 0.209642\n"
+    }
+  ],
+  "deterministic_symbolic": true,
+  "identity_baseline_equal": true
+}

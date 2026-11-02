@@ -1,0 +1,12 @@
+{
+  "kernel_ref": "kevinmhk/arc-gpu2-public-evaluation/3",
+  "original_kernel_ref": "kevinmhk/arc-gpu2-public-evaluation/2",
+  "notebook_sha256": "a1faac5fc44cde367fe8675aa001e9cf4da0c7711b4eb08fa072e547607b6bef",
+  "recorded_epoch": 1793563480.573008,
+  "original_experiment_deadline_epoch": 1793569560.8704834,
+  "graceful_seconds": 5100,
+  "hard_seconds": 5400,
+  "api_timeout_seconds": 5460,
+  "source_and_metadata_readback_verified": true,
+  "change": "Readiness-only no-candidate allowance; frozen model/decoder and benchmark16/22 unchanged; no first-run answers loaded."
+}

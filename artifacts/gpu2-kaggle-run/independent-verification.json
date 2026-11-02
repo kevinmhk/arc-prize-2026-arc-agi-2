@@ -1,0 +1,66 @@
+{
+  "kernel_ref": "kevinmhk/arc-gpu2-public-evaluation/3",
+  "status": "incomplete",
+  "scores": {
+    "symbolic": {
+      "either_correct": 0,
+      "first_correct": 0,
+      "total_outputs": 22,
+      "solved_tasks": 0,
+      "total_tasks": 16,
+      "either_correct_output_ids": [],
+      "first_correct_output_ids": []
+    },
+    "inference_only": {
+      "either_correct": 6,
+      "first_correct": 5,
+      "total_outputs": 22,
+      "solved_tasks": 5,
+      "total_tasks": 16,
+      "either_correct_output_ids": [
+        "31f7f899:0",
+        "4c3d4a41:0",
+        "4c3d4a41:1",
+        "6e453dd6:0",
+        "1818057f:0",
+        "a251c730:0"
+      ],
+      "first_correct_output_ids": [
+        "31f7f899:0",
+        "4c3d4a41:0",
+        "4c3d4a41:1",
+        "6e453dd6:0",
+        "1818057f:0"
+      ]
+    }
+  },
+  "coverage": {
+    "arms": {
+      "inference_only": {
+        "error": 0,
+        "fallback_outputs": 12,
+        "missing": 0,
+        "model_outputs": 10,
+        "status": {
+          "complete": 7,
+          "partial_invalid": 9
+        },
+        "timeout": 0
+      }
+    },
+    "tasks": 16
+  },
+  "timing": {
+    "pilot_seconds": 828.898818235,
+    "predictions_persisted_seconds": 1155.968643913,
+    "preflight_seconds": 132.48298647000001,
+    "report_seconds": 11.026478262999944,
+    "setup_seconds": 64.55689574500002,
+    "smoke_seconds": 130.01332564799998,
+    "total_seconds": 1166.998336735
+  },
+  "summed_inference_seconds": 1842.0853085699996,
+  "reported_peak_GiB": 14.224609375,
+  "errors": {},
+  "validation": "grid/count/data-hash/score/delta/fallback/event checks passed"
+}

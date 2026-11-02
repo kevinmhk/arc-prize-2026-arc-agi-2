@@ -70,13 +70,20 @@ answers to candidate fitting or selection.
 | [requirements-dev.txt](requirements-dev.txt) | Pinned notebook execution and quality tools. |
 | [requirements-experiments.txt](requirements-experiments.txt) | Pinned NumPy/scikit-learn experiment dependencies. |
 | [docs/overview.md](docs/overview.md) | Captured competition description and submission constraints. |
+| [docs/data.md](docs/data.md) | Captured dataset description; the dataset itself remains local-only. |
 | [docs/proposal.md](docs/proposal.md) | Historical proposal, including unimplemented learned search priors and later phases. |
 | [docs/qwen-perspective.md](docs/qwen-perspective.md) | Conceptual comparison of direct grid generation and proposed program generation. |
 | [docs/plan.md](docs/plan.md) | Detailed execution history and measured checkpoints. |
 
-`data/`, `artifacts/`, `.venv/`, and caches are ignored by Git. Local data, executed
-notebooks, frozen manifests, predictions, and evidence in those directories are
-not backed up by the repository. Preserve them when cleaning the workspace.
+`data/`, `.venv/`, caches, and bulk `artifacts/` outputs remain ignored by Git.
+A curated set of frozen selections, configurations, source snapshots, and compact
+verification reports under `artifacts/` is explicitly tracked. These are historical
+evidence, not current runtime configuration or a complete experiment backup.
+Original snapshots are preserved byte-for-byte, including old schema versions;
+do not rewrite them to make a new run resume. Raw predictions, cached baselines,
+executed notebooks, and logs still need a separate backup before local deletion.
+In particular, `artifacts/phase1c/verification.json` records hashes but does not
+replace the ignored `training.json` baseline it verifies.
 The proposed `arc_solver/` package layout is not the implemented layout: the
 symbolic runtime lives in the notebook and is reused through trusted definitions.
 

@@ -1,0 +1,14 @@
+{
+  "kernel_ref": "kevinmhk/arc-gpu2-public-evaluation/2",
+  "url": "https://www.kaggle.com/code/kevinmhk/arc-gpu2-public-evaluation",
+  "launch_recorded_epoch": 1793562360.8704834,
+  "pilot_commit": "e5a7ed798e8c7b4b768f3f071793f72d2f4b6de7",
+  "notebook_sha256": "f2f5fcb7014589c2353a51236aca1ce51fc5bbc4cdd292a26fa3895fd3aa826e",
+  "reference_notebook_sha256": "463829abfea83fb95d7336dc6a4ffb8a7f652e3bcdb3947e840cf502bc7b70e4",
+  "private": true,
+  "internet": false,
+  "session_timeout_seconds": 7200,
+  "metadata_source_readback_verified": true,
+  "submission_authorized": false,
+  "source_state": "evaluation adapter uncommitted; frozen source saved alongside this record"
+}

@@ -1,0 +1,121 @@
+{
+  "baseline_source": {
+    "kind": "verified_artifact",
+    "path": "artifacts/phase1c/training.json",
+    "sha256": "0d5cb7efd2dd56294e65762bdbcf94b1a0e3166d206501c6815db41780331302",
+    "verification_run": "training"
+  },
+  "config": {
+    "analysis_timeout_seconds": 5.0,
+    "conditions": [
+      {
+        "generator": "production",
+        "max_depth": 2,
+        "max_programs": 1024,
+        "name": "baseline"
+      },
+      {
+        "generator": "diagnostic_prefix_preserving",
+        "max_depth": 2,
+        "max_programs": 4096,
+        "name": "expanded_depth2"
+      },
+      {
+        "generator": "diagnostic_prefix_preserving",
+        "max_depth": 3,
+        "max_programs": 8192,
+        "name": "deeper_depth3"
+      }
+    ],
+    "inference_contract": {
+      "oracle_candidate_coverage_is_post_inference_only": true,
+      "runtime": "trusted notebook definition cell",
+      "training_solutions_passed_to_inference": false
+    },
+    "sample_size": 32,
+    "schema_version": 2,
+    "source": {
+      "diagnostic_script_sha256": "c6535a8ff52f2a4eea25ea0869fb4232a9fe027feaa449b7cf0d69d73e34d797",
+      "notebook_hash_verified": true,
+      "notebook_path": "notebooks/submission.ipynb",
+      "notebook_sha256": "6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028",
+      "training_challenges_sha256": "779eaba89790ebad9af02514a7efc0aefaf2cf8236f046a31bbf8b9ec48f20f5",
+      "training_solutions_sha256": "9f07a38bd25af5e83aa5bf85c5cb1a1fefdb30f6a755256fa65429e697ca97f9",
+      "verification_metadata_available": true,
+      "verification_notebook_sha256": "6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028"
+    },
+    "task_timeout_seconds": 20.0
+  },
+  "execution": {
+    "output_dir": "/home/kevinmhk/workspaces/hackathon-projects/2-arc-agi-2/artifacts/search-diagnostic-final",
+    "scratch_dir": "/home/kevinmhk/.hermes/profiles/coder/cache/scratch",
+    "started_at_utc": "2026-10-23T14:37:39Z"
+  },
+  "runtime": {
+    "implementation": "CPython",
+    "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+    "python": "3.14.9 (main, Oct 21 2026, 06:02:15) [GCC 13.3.0]"
+  },
+  "schema_version": 1,
+  "selection": {
+    "baseline_source": {
+      "kind": "verified_artifact",
+      "path": "artifacts/phase1c/training.json",
+      "sha256": "0d5cb7efd2dd56294e65762bdbcf94b1a0e3166d206501c6815db41780331302",
+      "verification_run": "training"
+    },
+    "schema_version": 1,
+    "selected_ids": [
+      "8b28cd80",
+      "cbded52d",
+      "705a3229",
+      "2bcee788",
+      "5d588b4d",
+      "b527c5c6",
+      "3bd67248",
+      "67e8384a",
+      "ed74f2f2",
+      "320afe60",
+      "363442ee",
+      "48634b99",
+      "9a4bb226",
+      "6d75e8bb",
+      "5ad8a7c0",
+      "256b0a75",
+      "9ddd00f0",
+      "a59b95c0",
+      "eb281b96",
+      "543a7ed5",
+      "f9d67f8b",
+      "56dc2b01",
+      "ce4f8723",
+      "25d487eb",
+      "dae9d2b5",
+      "ac605cbb",
+      "48f8583b",
+      "8eb1be9a",
+      "36d67576",
+      "1190bc91",
+      "e7639916",
+      "d10ecb37"
+    ],
+    "selected_ids_sha256": "9ccdbd5143fb299b5a93f878a3399f0583528516f3d7035d410bb1776625cd2c",
+    "selection": {
+      "iteration_task_count": 784,
+      "iteration_unsolved_task_count": 762,
+      "selected_ids_sha256": "9ccdbd5143fb299b5a93f878a3399f0583528516f3d7035d410bb1776625cd2c",
+      "selected_task_count": 32,
+      "selection_rule": "unsolved TRAIN tasks with training_split == iteration, ordered by sha256(task_id).hexdigest()"
+    }
+  },
+  "source": {
+    "diagnostic_script_sha256": "c6535a8ff52f2a4eea25ea0869fb4232a9fe027feaa449b7cf0d69d73e34d797",
+    "notebook_hash_verified": true,
+    "notebook_path": "notebooks/submission.ipynb",
+    "notebook_sha256": "6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028",
+    "training_challenges_sha256": "779eaba89790ebad9af02514a7efc0aefaf2cf8236f046a31bbf8b9ec48f20f5",
+    "training_solutions_sha256": "9f07a38bd25af5e83aa5bf85c5cb1a1fefdb30f6a755256fa65429e697ca97f9",
+    "verification_metadata_available": true,
+    "verification_notebook_sha256": "6866cf2b7c69ce38a9de2dea1bcb225cd5a39d20c8342c26f08e5c494c766028"
+  }
+}

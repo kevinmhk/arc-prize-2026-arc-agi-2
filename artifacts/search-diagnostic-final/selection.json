@@ -1,0 +1,51 @@
+{
+  "baseline_source": {
+    "kind": "verified_artifact",
+    "path": "artifacts/phase1c/training.json",
+    "sha256": "0d5cb7efd2dd56294e65762bdbcf94b1a0e3166d206501c6815db41780331302",
+    "verification_run": "training"
+  },
+  "schema_version": 1,
+  "selected_ids": [
+    "8b28cd80",
+    "cbded52d",
+    "705a3229",
+    "2bcee788",
+    "5d588b4d",
+    "b527c5c6",
+    "3bd67248",
+    "67e8384a",
+    "ed74f2f2",
+    "320afe60",
+    "363442ee",
+    "48634b99",
+    "9a4bb226",
+    "6d75e8bb",
+    "5ad8a7c0",
+    "256b0a75",
+    "9ddd00f0",
+    "a59b95c0",
+    "eb281b96",
+    "543a7ed5",
+    "f9d67f8b",
+    "56dc2b01",
+    "ce4f8723",
+    "25d487eb",
+    "dae9d2b5",
+    "ac605cbb",
+    "48f8583b",
+    "8eb1be9a",
+    "36d67576",
+    "1190bc91",
+    "e7639916",
+    "d10ecb37"
+  ],
+  "selected_ids_sha256": "9ccdbd5143fb299b5a93f878a3399f0583528516f3d7035d410bb1776625cd2c",
+  "selection": {
+    "iteration_task_count": 784,
+    "iteration_unsolved_task_count": 762,
+    "selected_ids_sha256": "9ccdbd5143fb299b5a93f878a3399f0583528516f3d7035d410bb1776625cd2c",
+    "selected_task_count": 32,
+    "selection_rule": "unsolved TRAIN tasks with training_split == iteration, ordered by sha256(task_id).hexdigest()"
+  }
+}

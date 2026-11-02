@@ -1,0 +1,27 @@
+{
+  "kernel_ref": "kevinmhk/arc-gpu3-ttt-evaluation/3",
+  "source_sha256": "f44b8b763684687c55347b71b6683fad72b879eabded6f37c7fe4b2f0dfa7399",
+  "outputs": {
+    "output-v3/arc-gpu3-ttt-evaluation.log": "1486eb43c52cf747a448b476f7aa1e2b08a06aff2c20010537d149f7eacd717d",
+    "output-v3/gpu3-ttt-evaluation/events.jsonl": "93b1ed581a14b4cc5fddecf9b13663add121f826ffb307cd0c6cb8e181b99705",
+    "output-v3/gpu3-ttt-evaluation/manifest.json": "d0db6ebf41209e5a4ccd8c898b875f847cfeaad2af134899bbeb5a7137c249e0",
+    "output-v3/gpu3-ttt-evaluation/predictions.json": "5d9be4033cb1deb2a2cf127b6455841259e43188ef368962e3713cafeb6459e1",
+    "output-v3/gpu3-ttt-evaluation/tasks/16b78196.json": "4646fbc38ec5f75a530977f28239aaac3d1cbf9709daa182d897d55d111ee7dc",
+    "output-v3/gpu3-ttt-evaluation/tasks/1818057f.json": "0f1314697753a68541014e8a446ccee9888960de57c06abae7a2dfc2b0eb9268",
+    "output-v3/gpu3-ttt-evaluation/tasks/269e22fb.json": "eb9bcc049970a23e7cce1538b2d1661481d4f9ad6c16d51c9157265449a882e6",
+    "output-v3/gpu3-ttt-evaluation/tasks/31f7f899.json": "fffe408721ec171bacf861cfec3c28ac93638e2bdc02ac4eca4ac689f12e6a9b",
+    "output-v3/gpu3-ttt-evaluation/tasks/446ef5d2.json": "2266755de7535f178efc0bb10902d67ce59d34642da42ba45b0e771394d38092",
+    "output-v3/gpu3-ttt-evaluation/tasks/4c3d4a41.json": "ea22013595a34869a5f8b91ef5a0009c25da1f8d05d30c1aa0026fa2ba1283ef",
+    "output-v3/gpu3-ttt-evaluation/tasks/53fb4810.json": "5c9eb8ead239f78703578a9d07117490e2b6aa5b0fd6588b8714de5475cc10ef",
+    "output-v3/gpu3-ttt-evaluation/tasks/65b59efc.json": "298b3e932feb407ee9b1cfe62c4f6f9baaf060034ec54c32e29a8181c7233f35",
+    "output-v3/gpu3-ttt-evaluation/tasks/6e453dd6.json": "f4d57d5a14f13881b6e01a6ca84d91c8f7623ed873abe32bdab45783259841a9",
+    "output-v3/gpu3-ttt-evaluation/tasks/7491f3cf.json": "4551967a59a1365a2f4ec0de43f9b1e7b7018ef2dcd5a952621efb68a6677678",
+    "output-v3/gpu3-ttt-evaluation/tasks/7b3084d4.json": "21a51c2e0137e59c005f18491f23501d9ba6d4b52817cca795a3f0d69cd13827",
+    "output-v3/gpu3-ttt-evaluation/tasks/80a900e0.json": "bda5373cf3212ef4a8a301dae94167cc5b846048426857b74d0fdbc066772cae",
+    "output-v3/gpu3-ttt-evaluation/tasks/89565ca0.json": "0300fc2b040e0f642d09f32bc3a2b1662f02b9a3bc18706eca5a37ddb6f7ed7b",
+    "output-v3/gpu3-ttt-evaluation/tasks/a251c730.json": "89fabdb72863a08e6d8976a04448178b2c194212f8f6c9cca6d26b7650ec3c09",
+    "output-v3/gpu3-ttt-evaluation/tasks/d35bdbdc.json": "3438bb2bd1f0e97eb88146277cd58fe69961b53aaf3c6bac7411fb0a98d95f0d",
+    "output-v3/gpu3-ttt-evaluation/tasks/dfadab01.json": "29852ba29c2995ec90e6253519960ed1392af3a685d4e2535d6cedd134eae517"
+  },
+  "comparison_sha256": "a8bd0e2f5aa2035566d52b1dcbe27b94aa8f4ab0d36b596a2fbf02234b05c6b9"
+}

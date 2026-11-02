@@ -1,0 +1,34 @@
+{
+  "kernel_ref": "kevinmhk/arc-gpu2-public-evaluation/3",
+  "source_sha256": {
+    "notebooks/gpu2_public_evaluation.ipynb": "a1faac5fc44cde367fe8675aa001e9cf4da0c7711b4eb08fa072e547607b6bef",
+    "notebooks/gpu1_nvarc_pilot.ipynb": "463829abfea83fb95d7336dc6a4ffb8a7f652e3bcdb3947e840cf502bc7b70e4",
+    "tests/test_gpu2_notebook.py": "52756959746215c64b0d1f50a2b434f8e8398a1f2091cfd02cfce98d3feab7d6"
+  },
+  "raw_output_sha256": {
+    "output-v3/arc-gpu2-public-evaluation.log": "ed82b5abafb4dd26176bdde1e4030e26024a86a6da9249c451b9ecfbb589d458",
+    "output-v3/gpu2-public-evaluation/events.jsonl": "6a90774188fff1dea88d1f5903907b49e4fef6f4f7bd81dbdca65651f14c4c03",
+    "output-v3/gpu2-public-evaluation/manifest.json": "524a675972e3518c25a5bc27ec77dda4731b1e405b1d706591bda27b4564d7d8",
+    "output-v3/gpu2-public-evaluation/predictions.json": "d280d3a10640b078b3a915677643d9a5c20214f46e7055655d3552f2da7bc635",
+    "output-v3/gpu2-public-evaluation/summary.json": "e7d3a632be9cb08a7e57a28f340bbdb1627d56435b3416cef2c4d6621fd6cc07",
+    "output-v3/gpu2-public-evaluation/tasks/16b78196.json": "3834981e692c3c52e63038c8a260bb2449289ea769b2599e356d98ededeb8005",
+    "output-v3/gpu2-public-evaluation/tasks/1818057f.json": "4e22c9c9e3b8791f87f850ead01fb60c78d1d873e70f38052b4d65d470e7e993",
+    "output-v3/gpu2-public-evaluation/tasks/269e22fb.json": "e42cb4d3afb1d44493613982e2b7c96588f3d6a5d041b51203d22ad22320ac43",
+    "output-v3/gpu2-public-evaluation/tasks/31f7f899.json": "c2c16c0b5af728f10d5a4be88783e2a8e6f7ca44308ef401654feb7c3d4ff22b",
+    "output-v3/gpu2-public-evaluation/tasks/446ef5d2.json": "16f27722e7367372abf33e5fc801833e556b46c8809dbe9f0205cacfede8c1f9",
+    "output-v3/gpu2-public-evaluation/tasks/4c3d4a41.json": "b878a8111f2779c7b9fbe01a50cf853d3d0a17cb8d0b23919280932922a47674",
+    "output-v3/gpu2-public-evaluation/tasks/53fb4810.json": "5e705393c701b0513e0c7e0c286e15d227a92b9ed8b8acdf6b0e393b240f0f9f",
+    "output-v3/gpu2-public-evaluation/tasks/581f7754.json": "00c68bc4168e8e69e6ada4a350761105b8ec037716b906749d831f225a62e23c",
+    "output-v3/gpu2-public-evaluation/tasks/65b59efc.json": "12163d135e4e33ee91bb6bb329328dbbb6610c970ce2d272f1d0653940f1d8cb",
+    "output-v3/gpu2-public-evaluation/tasks/6e453dd6.json": "eb96f903421b7cf9c409db3b3dda1807b261ab296cedbf01cdc1815b1eafe3f1",
+    "output-v3/gpu2-public-evaluation/tasks/7491f3cf.json": "9e8ca9c04c05011823a678263e0c2212de96b6755d001612089c07d176a30a7a",
+    "output-v3/gpu2-public-evaluation/tasks/7b3084d4.json": "27603356289624681bbe670f4471358cc0595c065253986c1889f2467cd18ec0",
+    "output-v3/gpu2-public-evaluation/tasks/80a900e0.json": "ab585cba2196380bf76555bff7d90ee54ba45eb4daacab80a9e68de59bbd6584",
+    "output-v3/gpu2-public-evaluation/tasks/89565ca0.json": "703e9aa67e0daa71d3930652b6164ac6bbead8b6c1b8d454c383d9e328818c5b",
+    "output-v3/gpu2-public-evaluation/tasks/a251c730.json": "918b84fca2436410b4e0e47c6856de588d0c1c8b94a9483d6bc4871b9a5260fb",
+    "output-v3/gpu2-public-evaluation/tasks/d35bdbdc.json": "1d0f715c1ea6dd9d798a4aa73de67128700ba5706acd22696b253cc28702b987",
+    "output-v3/gpu2-public-evaluation/tasks/dfadab01.json": "cceea27431db56fc1594cbe05d9e612c735ee862de0126610fe88b0c1f127e8e"
+  },
+  "verification_sha256": "7294c4ff70887fe3d4dcac93d5fdaad4d7c4140ef1c6cdedf8b5ac143b2b9f51",
+  "recorded_epoch": 1793565064.558451
+}
