@@ -729,3 +729,81 @@ No Kaggle notebook integration, upload, or submission is part of A2.
   Original uploads and hashes are ignored under
   `artifacts/gpu1-hosted-complete-cpbqc344/`; the exact hosted notebook source
   was not supplied. No competition submission was made.
+
+### GPU-2 public-evaluation comparison checkpoint (2026-11-02)
+
+- [x] Add a self-contained, hash-verified GPU-2 notebook that reuses the exact
+  GPU-1 definition/payload cells and runs only the inference-only arm. It uses
+  one separate smoke task, the frozen 16-task selection, four independent
+  workers, 5100/5400-second global deadlines, 1200 seconds per inference arm,
+  incremental task/prediction persistence, and no submission output.
+- [x] Add focused CPU-only tests for explicit selection arguments and order,
+  ABI/missing-input checks, the real adapter path with synthetic workers,
+  no-training behavior, fallback/error provenance, exact-grid first/either
+  scoring deltas, and solution loading after prediction persistence.
+- [x] Preserve reference hashes, model/dependency provenance, timing stages,
+  the 16-task pilot denominator of 22 outputs, completed-only subsets, and
+  fallback/error counts. The separate smoke task is persisted and validated but
+  is excluded from the pilot comparison denominator. The local CPU-check passes.
+- [x] Record the first hosted GPU-2 attempt: it ended with `ERROR` after about
+  320 seconds, before pilot start. The smoke task completed with the model
+  loaded and the inference-only arm completed, but emitted zero grid candidates
+  and two fallback outputs; no evaluation answers were loaded. Preserved metadata is
+  under `artifacts/gpu2-kaggle-run/output/gpu2-public-evaluation/`.
+- [x] Independently review and execute the corrected frozen notebook in the
+  authenticated Kaggle environment. Saved version
+  `kevinmhk/arc-gpu2-public-evaluation/3` finished `COMPLETE`; private status,
+  original pinned image, L4 shape, Internet-off inputs, and code were read back.
+  GPU2 SHA-256 is
+  `a1faac5fc44cde367fe8675aa001e9cf4da0c7711b4eb08fa072e547607b6bef`.
+- [x] Independently rescore saved predictions against hash-matched evaluation
+  data: inference-only scored 6/22 outputs with either attempt, 5/22 on attempt
+  1, and 5/16 fully solved tasks. Symbolic scored 0/22 outputs and 0/16 tasks;
+  paired gain was 6 outputs, loss 0. The separate smoke task is excluded.
+- [x] Record coverage separately from execution: all 16 tasks were processed,
+  with no worker/task errors, inference timeouts, or TTT training. The model
+  supplied 10/22 output grids; 12 used explicit symbolic fallback. Seven tasks
+  had complete model coverage and nine were `partial_invalid`, so application
+  status is `incomplete` despite successful hosted execution. This is a coverage
+  limitation, not a CUDA/startup failure.
+- [x] Record measured runtime and memory: 1167.00 seconds notebook body,
+  including 828.90 seconds pilot phase; peak reported device memory was
+  14.22 GiB. Hosted logs span 1191.25 seconds for version 3 and 320.31 seconds
+  for the initial smoke-only failure. The retry retained the original overall
+  deadline and reduced its internal cap to 90 minutes.
+  Raw outputs are ignored under `artifacts/gpu2-kaggle-run/output-v3/`;
+  `independent-verification.json`, launch/continuation records, and the preserved
+  version-2 source document provenance. These public development tasks may have
+  pretrained-checkpoint exposure; this is not unseen or leaderboard accuracy.
+  No full submission path or competition submission was created. The new GPU2
+  notebook/tests/plan remain uncommitted, separate from merged GPU1 PR #8.
+
+### GPU-2 scoped correction checkpoint (2026-11-02)
+
+- [x] Add a RED-GREEN regression through the actual `run_real` callback for
+  `worker_error` events that contain `task_ids` but no `task_id`. Completed arm
+  predictions remain persisted; worker error and traceback data are retained;
+  summary status is `error`, not `missing`.
+- [x] Replace duplicated GPU2 worker/inference/fallback/event code with the
+  isolated GPU1 namespace adapter. GPU2 now changes only the dynamic arm order
+  to `("inference_only",)`, calls the trusted GPU1 preflight, worker, task,
+  validators, fallback fill, event merge, supervisor, clock, and comparison
+  helpers, and passes public evaluation challenges through `training_path`.
+- [x] Verify timing boundaries with focused checks: reference setup timing is
+  recorded before decode, and report timing is recorded after scoring. A fresh
+  kernel executed the complete notebook in `cpu-check` mode successfully.
+- [x] Apply the measured readiness correction: a completed smoke task with no
+  worker errors, an explicitly successful inference arm, zero candidates and
+  zero invalid candidates, fallback output count equal to the test count, and
+  exactly empty raw predictions now proceeds to pilot. The manifest records
+  zero coverage explicitly; existing fallback normalization remains in place.
+  Error, timeout, task-error, and invalid-grid smoke results remain rejected.
+  Retry caps are 5100 graceful / 5400 hard seconds; the parent must launch only
+  with at least 5460 seconds remaining under the original 120-minute deadline
+  and CLI timeout 5460; version 3 completed the fixed 16-task benchmark above.
+- [x] Correction gates passed in order: format, lint, `ty check`, 85 unittest
+  tests, and `git diff --check`. Fresh project-interpreter kernels passed from
+  repository-root and detached working directories, without `PYTHONPATH`.
+  Focused independent review approved the exact deployed notebook hash above.
+  GPU1 remains byte-identical at SHA-256
+  `463829abfea83fb95d7336dc6a4ffb8a7f652e3bcdb3947e840cf502bc7b70e4`.
