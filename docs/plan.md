@@ -807,3 +807,75 @@ No Kaggle notebook integration, upload, or submission is part of A2.
   Focused independent review approved the exact deployed notebook hash above.
   GPU1 remains byte-identical at SHA-256
   `463829abfea83fb95d7336dc6a4ffb8a7f652e3bcdb3947e840cf502bc7b70e4`.
+
+### GPU-3 bounded TTT comparison (2026-11-02)
+
+- [x] Reuse the exact GPU1 model/trainer/decoder/reset/supervisor for TTT only,
+  on the same 16 benchmark tasks / 22 outputs. Reuse the first benchmark task
+  as smoke, then process the other 15; do not rerun inference-only. Keep the
+  exact saved symbolic fallback. Do not load solutions in the GPU notebook.
+- [x] Verify the real symbolic-runtime validator and cached fallback before GPU
+  allocation. Corrected the initial validator namespace lookup; version 2
+  stopped before model loading, training, or prediction. Preserve its source
+  and log separately. Retry retained the original experiment deadline with
+  reduced 5100/5400-second internal caps and a 5460-second hosted timeout.
+- [x] Execute private, offline, image-pinned L4x4 version
+  `kevinmhk/arc-gpu3-ttt-evaluation/3`: hosted `COMPLETE`, source SHA-256
+  `f44b8b763684687c55347b71b6683fad72b879eabded6f37c7fe4b2f0dfa7399`.
+  All 16 tasks trained for one epoch and verified adapter reset. No worker/task
+  errors or inference timeouts; 15 tasks had full model coverage, one partial.
+- [x] Independently rescore after predictions froze. TTT: 9/22 exact outputs,
+  8/22 on attempt 1, and 6/16 fully solved tasks. Inference-only: 6/22, 5/22,
+  and 5/16 respectively. TTT adds 4 outputs and loses 1, net +3; model coverage
+  rises from 10/22 to 21/22, with one symbolic fallback. Model/dependency/data
+  hashes match the saved inference-only comparator; raw events and fallback
+  provenance passed checks. Public-checkpoint exposure remains possible.
+- [x] Measure TTT body time 2874.01 seconds versus inference-only 1167.00;
+  reported peak device memory 14.60 GiB versus 14.22 GiB. Summed worker training
+  time is 2673.18 seconds, not elapsed wall time. Preserve raw outputs and hashes
+  under `artifacts/gpu3-kaggle-run/`, including independent-comparison.json.
+- [x] Retain inference-only for the first full integration under the declared
+  practical-runtime gate. Conservative whole-sample scaling to 240 tasks puts
+  TTT near 11.98 hours, with no safe 12-hour headroom. This includes repeated
+  fixed overhead and is not proof that TTT cannot fit; no full TTT timing run
+  has been performed. Preserve the stronger-accuracy TTT experiment unchanged.
+- [x] Pass format, lint, typecheck, 95 tests, actual 16-task baseline validation,
+  literal-reference API checks, fresh root/detached project kernels and focused
+  independent review. Original GPU1/GPU2/symbolic notebooks remain unchanged.
+
+### Full GPU submission integration (2026-11-02)
+
+- [x] Exercise the existing symbolic fallback on all actual test inputs:
+  240 task keys / 259 outputs validated and read back in 60.41 seconds on the
+  development CPU. This is fallback-component evidence, not GPU accuracy.
+- [x] Add separate `notebooks/gpu_submission.ipynb`, SHA-256
+  `d13c5864eba2f7ff3919d7949c3a19ba49fb0e5612f8cb094279c553ec13db56`,
+  with static inference-only policy, dynamic test key/output counts, two attempts,
+  no solutions, cached genuine symbolic fallback and atomic submission.json
+  persistence. Write a complete fallback file before GPU setup and retain
+  completed model outputs through caught failures or deadline shutdown.
+  Default real mode schedules all incoming test tasks with 41400-second graceful
+  and 42600-second watchdog limits, leaving headroom inside the platform's
+  43200-second limit. The symbolic notebook remains byte-identical.
+- [x] Pass format, lint, typecheck, 104 tests and diff checks. Parent and
+  independent reviewer executed all cells in fresh project kernels, including
+  root/detached runs on the actual 240-task / 259-output input. Read-back schema,
+  real runtime validators, atomic output, fork/error preservation and synchronous
+  watchdog tests passed; CPU checks make no model or accuracy claims.
+- [x] Execute private offline pinned L4x4 smoke
+  `kevinmhk/arc-gpu-submission-smoke/2`: hosted and application `complete`,
+  487.96 seconds, no errors. The two smallest-context test tasks produced two
+  genuine GPU model outputs; the other 257 outputs used unchanged symbolic
+  fallback. Independently validate all 240 keys / 259 outputs, both attempts,
+  integer grid bounds, exact input hash, raw model events and fallback values.
+  This is integration evidence only, not a full GPU pass or accuracy test.
+  Captured artifacts/hashes: `artifacts/gpu-submission-smoke-run/`.
+- [x] Save private pinned full template
+  `kevinmhk/arc-gpu-full-submission/1` without executing it. Its code and metadata
+  were read back; real mode is the default, with no smoke override. The smoke
+  wrapper differs only by explicit smoke-mode setup; do not use that diagnostic
+  version as the intended full-model entry.
+- Full 240-task GPU execution and competition submission were not performed.
+  GPU2 was committed/pushed as `3fa5707` (PR #9). GPU3/full notebooks, their tests
+  and these checkpoint updates form the separate TTT/integration change;
+  raw data and hosted run artifacts remain ignored.
