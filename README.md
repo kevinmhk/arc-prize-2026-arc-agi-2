@@ -64,6 +64,9 @@ answers to candidate fitting or selection.
 | [scripts/diagnose_search.py](scripts/diagnose_search.py) | Bounded training-only search diagnostic and trusted symbolic-runtime loader. |
 | [scripts/experiment_a.py](scripts/experiment_a.py) | Independent per-puzzle decision-tree and random-forest cell classifiers. |
 | [scripts/experiment_a2.py](scripts/experiment_a2.py) | Whole-demonstration leave-one-out selection among symbolic and classifier sources. |
+| [scripts/rescore_gpu2_public_eval.py](scripts/rescore_gpu2_public_eval.py) | Independent replay validation and rescoring of saved GPU-2 v3 outputs. |
+| [scripts/compare_gpu3_ttt.py](scripts/compare_gpu3_ttt.py) | Independent paired comparison of saved GPU-3 v3 TTT and GPU-2 v3 inference outputs. |
+| [scripts/verify_gpu_submission.py](scripts/verify_gpu_submission.py) | Full submission CPU-check in fresh kernels from repository-root and detached working directories. |
 | [scripts/download_data.py](scripts/download_data.py) | Optional KaggleHub download helper; performs a network download when executed. |
 | [tests/](tests/) | Eight unittest modules covering symbolic inference, diagnostics, classifiers, and all four GPU notebooks. |
 | [pyproject.toml](pyproject.toml) | Python requirement and Ruff configuration. |
@@ -401,6 +404,32 @@ supports an output override through its Python API:
 It does not have a CLI output flag. Historical schema-1 A artifacts cannot resume
 under the current schema-2 runner; preserve them and choose a separate directory.
 
+The preserved verification helpers run immediately when called and resolve paths
+relative to their repository location. Run them deliberately from the repository
+root with the project interpreter:
+
+```bash
+./.venv/bin/python scripts/rescore_gpu2_public_eval.py
+./.venv/bin/python scripts/compare_gpu3_ttt.py
+./.venv/bin/python scripts/verify_gpu_submission.py
+```
+
+The rescorers require the original evaluation challenges and solutions in ignored
+`data/` and the ignored raw GPU-2 v3 outputs under
+`artifacts/gpu2-kaggle-run/output-v3/`. The GPU-3 comparison also requires the raw
+GPU-3 v3 outputs under `artifacts/gpu3-kaggle-run/output-v3/`. They validate saved
+predictions without model execution and rewrite, respectively,
+`artifacts/gpu2-kaggle-run/independent-verification.json` and
+`artifacts/gpu3-kaggle-run/independent-comparison.json`.
+
+The full submission verifier requires the original `data/arc-agi_test_challenges.json`
+with its frozen 240 tasks and 259 outputs. It executes all notebook cells in
+`cpu-check` mode, using fresh kernels bound to the invoking interpreter from both
+repository-root and detached working directories. It retains executed notebooks
+and outputs in a new `artifacts/gpu-submission-parent-*` directory. This checks CPU
+execution and submission structure; it does not establish GPU accuracy. Missing
+inputs cause these helpers to fail; they do not download data or train models.
+
 Run quality gates in format, lint, typecheck, test order. Ruff supports notebooks;
 ty needs extracted Python. Extract one file per notebook, including entrypoint
 cells, without executing them:
@@ -422,7 +451,7 @@ for path in Path("notebooks").glob("*.ipynb"):
 PY
 ./.venv/bin/ruff format --check scripts tests notebooks
 ./.venv/bin/ruff check scripts tests notebooks
-./.venv/bin/ty check scripts/diagnose_search.py scripts/experiment_a.py scripts/experiment_a2.py tests "$check_dir"
+./.venv/bin/ty check scripts/diagnose_search.py scripts/experiment_a.py scripts/experiment_a2.py scripts/rescore_gpu2_public_eval.py scripts/compare_gpu3_ttt.py scripts/verify_gpu_submission.py tests "$check_dir"
 ./.venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
@@ -474,9 +503,12 @@ The selected [grid checkpoint](https://www.kaggle.com/models/sorokin/qwen3_4b_gr
 and captured upstream notebook declare Apache-2.0; the full notice is retained
 in GPU-1 and its embedded snapshots. Source and payload hashes are recorded.
 
-There is no repository-wide `LICENSE` file. Do not infer a blanket license from
-the vendor notice. The complete upstream code, checkpoint, and training-data
-license/exposure chain has not been exhaustively audited. The
+Original project code is licensed under Apache-2.0; see [LICENSE](LICENSE).
+Copyright 2026 Kevin Mak. Sorokin's attribution and embedded Apache notice remain
+unchanged. External code, dependencies, model weights, and datasets remain subject
+to their respective licenses; the project license does not relicense them. The
+complete upstream code, checkpoint, and training-data license/exposure chain has
+not been exhaustively audited. The
 [competition reference](https://www.kaggle.com/competitions/arc-prize-2026-arc-agi-2)
 and local overview identify the task; captured rules and environment details
 should be rechecked before a separately authorized external run or release.
